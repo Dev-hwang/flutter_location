@@ -53,9 +53,9 @@ packages:
   fl_location_platform_interface:
     dependency: "direct main"
     description:
-      path: "../fl_location_platform_interface"
-      relative: true
-    source: path
+      name: fl_location_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.0.0"
   flutter:
     dependency: "direct main"

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="" />
+    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628067835846</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="init">
+      <created>1628129601501</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1628129601501</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -121,10 +131,10 @@
       <screen x="0" y="23" width="1920" height="993" />
     </state>
     <state x="765" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626309939872" />
-    <state x="672" y="120" key="CommitChangelistDialog2" timestamp="1628067835552">
+    <state x="672" y="120" key="CommitChangelistDialog2" timestamp="1628129601068">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state x="672" y="120" key="CommitChangelistDialog2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628067835552" />
+    <state x="672" y="120" key="CommitChangelistDialog2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628129601068" />
     <state x="284" y="112" key="DiffContextDialog" timestamp="1628067828023">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
@@ -149,10 +159,10 @@
       <screen x="0" y="23" width="1920" height="993" />
     </state>
     <state x="506" y="158" key="SettingsEditor/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628129562139" />
-    <state x="651" y="259" key="Vcs.Push.Dialog.v2" timestamp="1628067843692">
+    <state x="651" y="259" key="Vcs.Push.Dialog.v2" timestamp="1628129607305">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state x="651" y="259" key="Vcs.Push.Dialog.v2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628067843692" />
+    <state x="651" y="259" key="Vcs.Push.Dialog.v2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628129607305" />
     <state x="-1397" y="24" width="1335" height="974" key="dock-window-1" timestamp="1627448441132">
       <screen x="-1792" y="23" width="1792" height="1097" />
     </state>
