@@ -107,6 +107,8 @@ class LocationDataProvider(private val context: Context) {
 	}
 
 	private fun startLocationUpdates() {
+		if (locationCallback == null || locationRequest == null) return
+
 		locationProvider.requestLocationUpdates(
 				locationRequest!!, locationCallback!!, Looper.getMainLooper())
 	}
