@@ -9,6 +9,6 @@ import Foundation
 
 protocol ServiceProvider {
   func getLocationPermissionManager() -> LocationPermissionManager
-  func getLocationDataProvider() -> LocationDataProvider
+  func getLocationDataProviderManager() -> LocationDataProviderManager
   func getLocationServicesStatusWatcher() -> LocationServicesStatusWatcher
 }

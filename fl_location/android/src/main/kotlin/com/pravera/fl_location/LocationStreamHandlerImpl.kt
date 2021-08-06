@@ -18,6 +18,7 @@ class LocationStreamHandlerImpl(
 
 	private lateinit var channel: EventChannel
 	private var activity: Activity? = null
+	private var locationDataProviderHashCode: Int? = null
 
 	override fun onListen(arguments: Any?, events: EventChannel.EventSink) {
 		val callback = object : LocationDataCallback {
@@ -33,12 +34,17 @@ class LocationStreamHandlerImpl(
 		val argsMap = arguments as? Map<*, *>
 		val settings = LocationSettings.fromMap(argsMap)
 
-		serviceProvider.getLocationDataProvider()
+		locationDataProviderHashCode = serviceProvider
+				.getLocationDataProviderManager()
 				.requestLocationUpdates(activity, callback, settings)
 	}
 
 	override fun onCancel(arguments: Any?) {
-		serviceProvider.getLocationDataProvider().stopLocationUpdates()
+		if (locationDataProviderHashCode == null) return
+
+		serviceProvider
+				.getLocationDataProviderManager()
+				.stopLocationUpdates(locationDataProviderHashCode!!)
 	}
 
 	override fun initChannel(messenger: BinaryMessenger) {

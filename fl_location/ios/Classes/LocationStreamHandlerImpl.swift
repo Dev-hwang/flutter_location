@@ -13,6 +13,7 @@ class LocationStreamHandlerImpl: NSObject, FlutterStreamHandler, LocationDataHan
   private let serviceProvider: ServiceProvider
   
   private var locationEventSink: FlutterEventSink? = nil
+  private var locationDataProviderHashCode: Int? = nil
   
   init(messenger: FlutterBinaryMessenger, serviceProvider: ServiceProvider) {
     self.serviceProvider = serviceProvider
@@ -26,13 +27,20 @@ class LocationStreamHandlerImpl: NSObject, FlutterStreamHandler, LocationDataHan
     let settings = LocationSettings(from: argsDict)
     
     locationEventSink = events
-    serviceProvider.getLocationDataProvider().startUpdatingLocation(handler: self, settings: settings)
+    locationDataProviderHashCode = serviceProvider
+      .getLocationDataProviderManager()
+      .startUpdatingLocation(handler: self, settings: settings)
     return nil
   }
   
   func onCancel(withArguments arguments: Any?) -> FlutterError? {
     locationEventSink = nil
-    serviceProvider.getLocationDataProvider().stopUpdatingLocation()
+    if locationDataProviderHashCode != nil {
+      serviceProvider
+        .getLocationDataProviderManager()
+        .stopUpdatingLocation(hashCode: locationDataProviderHashCode!)
+      locationDataProviderHashCode = nil
+    }
     return nil
   }
   

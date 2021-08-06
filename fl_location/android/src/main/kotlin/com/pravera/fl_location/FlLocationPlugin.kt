@@ -1,9 +1,6 @@
 package com.pravera.fl_location
 
-import com.pravera.fl_location.service.LocationDataProvider
-import com.pravera.fl_location.service.LocationPermissionManager
-import com.pravera.fl_location.service.LocationServicesStatusWatcher
-import com.pravera.fl_location.service.ServiceProvider
+import com.pravera.fl_location.service.*
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -11,7 +8,7 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 /** FlLocationPlugin */
 class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
   private lateinit var locationPermissionManager: LocationPermissionManager
-  private lateinit var locationDataProvider: LocationDataProvider
+  private lateinit var locationDataProviderManager: LocationDataProviderManager
   private lateinit var locationServicesStatusWatcher: LocationServicesStatusWatcher
 
   private var activityBinding: ActivityPluginBinding? = null
@@ -24,7 +21,7 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
     val binaryMessenger = binding.binaryMessenger
 
     locationPermissionManager = LocationPermissionManager()
-    locationDataProvider = LocationDataProvider(applicationContext)
+    locationDataProviderManager = LocationDataProviderManager(applicationContext)
     locationServicesStatusWatcher = LocationServicesStatusWatcher()
 
     methodCallHandler = MethodCallHandlerImpl(applicationContext, this)
@@ -50,7 +47,7 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
     locationStreamHandler.setActivity(binding.activity)
     locationServicesStatusStreamHandler.setActivity(binding.activity)
     binding.addRequestPermissionsResultListener(locationPermissionManager)
-    binding.addActivityResultListener(locationDataProvider)
+    binding.addActivityResultListener(locationDataProviderManager)
     activityBinding = binding
   }
 
@@ -64,7 +61,7 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
 
   override fun onDetachedFromActivity() {
     activityBinding?.removeRequestPermissionsResultListener(locationPermissionManager)
-    activityBinding?.removeActivityResultListener(locationDataProvider)
+    activityBinding?.removeActivityResultListener(locationDataProviderManager)
     activityBinding = null
     methodCallHandler.setActivity(null)
     locationStreamHandler.setActivity(null)
@@ -73,7 +70,7 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
 
   override fun getLocationPermissionManager() = locationPermissionManager
 
-  override fun getLocationDataProvider() = locationDataProvider
+  override fun getLocationDataProviderManager() = locationDataProviderManager
 
   override fun getLocationServicesStatusWatcher() = locationServicesStatusWatcher
 }

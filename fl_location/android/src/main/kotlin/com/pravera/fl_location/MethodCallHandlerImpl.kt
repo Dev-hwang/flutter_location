@@ -61,12 +61,12 @@ class MethodCallHandlerImpl(
 			"getLocation" -> {
 				val callback = object : LocationDataCallback {
 					override fun onUpdate(locationJson: String) {
-						serviceProvider.getLocationDataProvider().stopLocationUpdates()
+						// 매니저에서 stopLocationUpdates 처리
 						result.success(locationJson)
 					}
 
 					override fun onError(errorCode: ErrorCodes) {
-						serviceProvider.getLocationDataProvider().stopLocationUpdates()
+						// 매니저에서 stopLocationUpdates 처리
 						ErrorHandleUtils.handleMethodCallError(result, errorCode)
 					}
 				}
@@ -74,8 +74,9 @@ class MethodCallHandlerImpl(
 				val argsMap = call.arguments as? Map<*, *>
 				val settings = LocationSettings.fromMap(argsMap)
 
-				serviceProvider.getLocationDataProvider()
-						.requestLocationUpdates(activity!!, callback, settings)
+				serviceProvider
+						.getLocationDataProviderManager()
+						.getLocation(activity, callback, settings)
 			}
 			else -> result.notImplemented()
 		}

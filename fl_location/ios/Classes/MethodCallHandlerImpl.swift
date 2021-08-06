@@ -14,6 +14,7 @@ class MethodCallHandlerImpl: NSObject, LocationPermissionHandler, LocationDataHa
   
   private var locationPermissionResult: FlutterResult? = nil
   private var locationDataResult: FlutterResult? = nil
+  private var locationDataProviderHashCode: Int? = nil
   
   init(messenger: FlutterBinaryMessenger, serviceProvider: ServiceProvider) {
     self.channel = FlutterMethodChannel(name: "plugins.pravera.com/fl_location", binaryMessenger: messenger)
@@ -37,7 +38,9 @@ class MethodCallHandlerImpl: NSObject, LocationPermissionHandler, LocationDataHa
         let settings = LocationSettings(from: argsDict)
         
         locationDataResult = result
-        serviceProvider.getLocationDataProvider().startUpdatingLocation(handler: self, settings: settings)
+        locationDataProviderHashCode = serviceProvider
+          .getLocationDataProviderManager()
+          .startUpdatingLocation(handler: self, settings: settings)
       default:
         result(FlutterMethodNotImplemented)
     }
@@ -55,14 +58,24 @@ class MethodCallHandlerImpl: NSObject, LocationPermissionHandler, LocationDataHa
   }
   
   func onLocationUpdate(locationJson: String) {
-    serviceProvider.getLocationDataProvider().stopUpdatingLocation()
+    if locationDataProviderHashCode != nil {
+      serviceProvider
+        .getLocationDataProviderManager()
+        .stopUpdatingLocation(hashCode: locationDataProviderHashCode!)
+      locationDataProviderHashCode = nil
+    }
     
     locationDataResult?(locationJson)
     locationDataResult = nil
   }
   
   func onLocationError(errorCode: ErrorCodes) {
-    serviceProvider.getLocationDataProvider().stopUpdatingLocation()
+    if locationDataProviderHashCode != nil {
+      serviceProvider
+        .getLocationDataProviderManager()
+        .stopUpdatingLocation(hashCode: locationDataProviderHashCode!)
+      locationDataProviderHashCode = nil
+    }
     
     if locationDataResult == nil { return }
     ErrorHandleUtils.handleMethodCallError(result: locationDataResult!, errorCode: errorCode)

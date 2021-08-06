@@ -3,7 +3,7 @@ import UIKit
 
 public class SwiftFlLocationPlugin: NSObject, FlutterPlugin, ServiceProvider {
   private var locationPermissionManager: LocationPermissionManager? = nil
-  private var locationDataProvider: LocationDataProvider? = nil
+  private var locationDataProviderManager: LocationDataProviderManager? = nil
   private var locationServicesStatusWatcher: LocationServicesStatusWatcher? = nil
   
   private var methodCallHandler: MethodCallHandlerImpl? = nil
@@ -18,7 +18,7 @@ public class SwiftFlLocationPlugin: NSObject, FlutterPlugin, ServiceProvider {
 
   private func initServices() {
     locationPermissionManager = LocationPermissionManager()
-    locationDataProvider = LocationDataProvider()
+    locationDataProviderManager = LocationDataProviderManager()
     locationServicesStatusWatcher = LocationServicesStatusWatcher()
   }
   
@@ -30,7 +30,7 @@ public class SwiftFlLocationPlugin: NSObject, FlutterPlugin, ServiceProvider {
   
   func getLocationPermissionManager() -> LocationPermissionManager { return locationPermissionManager! }
   
-  func getLocationDataProvider() -> LocationDataProvider { return locationDataProvider! }
+  func getLocationDataProviderManager() -> LocationDataProviderManager { return locationDataProviderManager! }
   
   func getLocationServicesStatusWatcher() -> LocationServicesStatusWatcher { return locationServicesStatusWatcher! }
 }

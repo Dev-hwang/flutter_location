@@ -2,7 +2,6 @@ package com.pravera.fl_location.service
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.IntentSender
 import android.os.Build
 import android.os.Looper
@@ -13,9 +12,8 @@ import com.google.gson.Gson
 import com.pravera.fl_location.errors.ErrorCodes
 import com.pravera.fl_location.models.LocationData
 import com.pravera.fl_location.models.LocationSettings
-import io.flutter.plugin.common.PluginRegistry
 
-class LocationDataProvider(private val context: Context): PluginRegistry.ActivityResultListener {
+class LocationDataProvider(private val context: Context) {
 	companion object {
 		private const val DEFAULT_LOCATION_INTERVAL = 5000L
 		private const val REQUEST_CHECK_SETTINGS = 0x1
@@ -31,7 +29,7 @@ class LocationDataProvider(private val context: Context): PluginRegistry.Activit
 	private var locationCallback: LocationCallback? = null
 	private var locationRequest: LocationRequest? = null
 
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+	fun onActivityResult(requestCode: Int, resultCode: Int): Boolean {
 		if (requestCode == REQUEST_CHECK_SETTINGS) {
 			if (resultCode == Activity.RESULT_OK) {
 				// The stopLocationUpdates function has already been called.
@@ -47,8 +45,10 @@ class LocationDataProvider(private val context: Context): PluginRegistry.Activit
 		return false
 	}
 
-	fun requestLocationUpdates(activity: Activity?,
-			callback: LocationDataCallback, settings: LocationSettings) {
+	fun requestLocationUpdates(
+			activity: Activity?,
+			callback: LocationDataCallback,
+			settings: LocationSettings) {
 		if (this.callback != null) stopLocationUpdates()
 
 		this.activity = activity
