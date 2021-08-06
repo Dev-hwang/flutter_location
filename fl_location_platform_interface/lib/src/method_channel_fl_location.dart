@@ -14,6 +14,9 @@ class MethodChannelFlLocation extends FlLocationPlatform {
   static const EventChannel locationServicesStatusEventChannel =
       EventChannel('plugins.pravera.com/fl_location/location_services_status');
 
+  Stream<Location>? _locationStream;
+  Stream<LocationServicesStatus>? _locationServicesStatusStream;
+
   @override
   Future<bool> isLocationServicesEnabled() async {
     final int result =
@@ -62,14 +65,14 @@ class MethodChannelFlLocation extends FlLocationPlatform {
     locationSettings['interval'] = interval;
     locationSettings['distanceFilter'] = distanceFilter;
 
-    return locationEventChannel
+    return _locationStream ??= locationEventChannel
         .receiveBroadcastStream(locationSettings)
         .map((event) => Location.fromJson(jsonDecode(event)));
   }
 
   @override
   Stream<LocationServicesStatus> getLocationServicesStatusStream() {
-    return locationServicesStatusEventChannel
+    return _locationServicesStatusStream ??= locationServicesStatusEventChannel
         .receiveBroadcastStream()
         .map((event) => getLocationServicesStatusFromIndex(event));
   }
