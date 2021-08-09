@@ -22,8 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="Fixed an issue where broadcast streams could not be imported">
+    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628472639259</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Upgrade fl_location_platform_interface plugin">
+      <created>1628472804614</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1628472804614</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,7 +184,8 @@
     <MESSAGE value="Fixed KotlinNullPointerException issue" />
     <MESSAGE value="Fixed an issue where broadcast stream could not be fetched" />
     <MESSAGE value="Upgrade fl_location_platform_interface version: 1.0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upgrade fl_location_platform_interface version: 1.0.1" />
+    <MESSAGE value="Upgrade fl_location_platform_interface plugin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade fl_location_platform_interface plugin" />
   </component>
   <component name="WindowStateProjectService">
     <state x="510" y="100" key="#Project_Structure" timestamp="1626245159072">
@@ -200,10 +212,10 @@
       <screen x="0" y="23" width="1920" height="993" />
     </state>
     <state x="765" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626309939872" />
-    <state x="736" y="199" key="CommitChangelistDialog2" timestamp="1628246125808">
+    <state x="788" y="198" key="CommitChangelistDialog2" timestamp="1628472804505">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state x="736" y="199" key="CommitChangelistDialog2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246125808" />
+    <state x="788" y="198" key="CommitChangelistDialog2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628472804505" />
     <state x="284" y="112" width="1536" height="794" key="DiffContextDialog" timestamp="1628244021307">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
