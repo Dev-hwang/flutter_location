@@ -19,7 +19,11 @@ class LocationDataProviderManager: NSObject {
     let hashCode = newLocationDataProvider.hash
     providers[hashCode] = newLocationDataProvider
     
-    newLocationDataProvider.startUpdatingLocation(handler: handler, settings: settings)
+    let newHandler = LocationDataHandlerImplForManager(handler) {
+      self.stopUpdatingLocation(hashCode: hashCode)
+    }
+    
+    newLocationDataProvider.startUpdatingLocation(handler: newHandler, settings: settings)
     return hashCode
   }
   
