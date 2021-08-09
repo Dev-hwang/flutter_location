@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="" />
+    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="Fixed an issue where broadcast streams could not be imported">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +127,28 @@
       <option name="project" value="LOCAL" />
       <updated>1628227641930</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed KotlinNullPointerException issue">
+      <created>1628245392652</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1628245392652</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixed an issue where broadcast stream could not be fetched">
+      <created>1628246125912</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1628246125912</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Upgrade fl_location_platform_interface version: 1.0.1">
+      <created>1628472639259</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1628472639259</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,7 +170,10 @@
     <MESSAGE value="init" />
     <MESSAGE value="Depend on fl_location_platform_interface" />
     <MESSAGE value="Corrected incorrect homepage URL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected incorrect homepage URL" />
+    <MESSAGE value="Fixed KotlinNullPointerException issue" />
+    <MESSAGE value="Fixed an issue where broadcast stream could not be fetched" />
+    <MESSAGE value="Upgrade fl_location_platform_interface version: 1.0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade fl_location_platform_interface version: 1.0.1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="510" y="100" key="#Project_Structure" timestamp="1626245159072">
@@ -174,38 +200,38 @@
       <screen x="0" y="23" width="1920" height="993" />
     </state>
     <state x="765" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626309939872" />
-    <state x="672" y="120" key="CommitChangelistDialog2" timestamp="1628227641746">
+    <state x="736" y="199" key="CommitChangelistDialog2" timestamp="1628246125808">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state x="672" y="120" key="CommitChangelistDialog2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628227641746" />
-    <state x="284" y="112" key="DiffContextDialog" timestamp="1628067828023">
+    <state x="736" y="199" key="CommitChangelistDialog2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246125808" />
+    <state x="284" y="112" width="1536" height="794" key="DiffContextDialog" timestamp="1628244021307">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state x="284" y="112" key="DiffContextDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628067828023" />
-    <state width="1762" height="441" key="GridCell.Tab.0.bottom" timestamp="1628068213305">
+    <state x="284" y="112" width="1536" height="794" key="DiffContextDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628244021307" />
+    <state width="1762" height="441" key="GridCell.Tab.0.bottom" timestamp="1628246169903">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.bottom/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628068213305" />
-    <state width="1762" height="441" key="GridCell.Tab.0.center" timestamp="1628068213305">
+    <state width="1762" height="441" key="GridCell.Tab.0.bottom/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169903" />
+    <state width="1762" height="441" key="GridCell.Tab.0.center" timestamp="1628246169902">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.center/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628068213305" />
-    <state width="1762" height="441" key="GridCell.Tab.0.left" timestamp="1628068213305">
+    <state width="1762" height="441" key="GridCell.Tab.0.center/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169902" />
+    <state width="1762" height="441" key="GridCell.Tab.0.left" timestamp="1628246169902">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.left/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628068213305" />
-    <state width="1762" height="441" key="GridCell.Tab.0.right" timestamp="1628068213305">
+    <state width="1762" height="441" key="GridCell.Tab.0.left/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169902" />
+    <state width="1762" height="441" key="GridCell.Tab.0.right" timestamp="1628246169903">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.right/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628068213305" />
+    <state width="1762" height="441" key="GridCell.Tab.0.right/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169903" />
     <state x="506" y="158" key="SettingsEditor" timestamp="1628129562139">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
     <state x="506" y="158" key="SettingsEditor/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628129562139" />
-    <state x="651" y="259" key="Vcs.Push.Dialog.v2" timestamp="1628140505462">
+    <state x="651" y="259" key="Vcs.Push.Dialog.v2" timestamp="1628246166375">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state x="651" y="259" key="Vcs.Push.Dialog.v2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628140505462" />
+    <state x="651" y="259" key="Vcs.Push.Dialog.v2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246166375" />
     <state x="-1397" y="24" width="1335" height="974" key="dock-window-1" timestamp="1627448441132">
       <screen x="-1792" y="23" width="1792" height="1097" />
     </state>
