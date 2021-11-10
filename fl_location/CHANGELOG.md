@@ -1,3 +1,7 @@
+## 1.1.0
+
+* Now this plugin is also available on the web.
+
 ## 1.0.1
 
 * Upgrade `fl_location_platform_interface: ^1.0.1`
