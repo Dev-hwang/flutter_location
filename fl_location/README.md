@@ -6,7 +6,7 @@ A plugin that can access the location services of each platform and collect devi
 
 - [x] Android
 - [x] iOS
-- [ ] Web
+- [x] Web
 
 ## Features
 
@@ -70,7 +70,7 @@ If you want to get the location in the background, add the following description
 1. Check whether the location permission is allowed or not, and if not allowed, request the location permission.
 
 ```dart
-Future<bool> _checkAndRequestLocationPermission({bool? background}) async {
+Future<bool> _checkAndRequestPermission({bool? background}) async {
   if (!await FlLocation.isLocationServicesEnabled) {
     // Location services are disabled.
     return false;
@@ -101,7 +101,7 @@ Future<bool> _checkAndRequestLocationPermission({bool? background}) async {
 
 ```dart
 Future<void> _getLocation() async {
-  if (await _checkAndRequestLocationPermission()) {
+  if (await _checkAndRequestPermission()) {
     final timeLimit = const Duration(seconds: 10);
     await FlLocation.getLocation(timeLimit: timeLimit).then((location) {
       print('location: ${location.toJson().toString()}');
@@ -118,7 +118,7 @@ Future<void> _getLocation() async {
 StreamSubscription<Location>? _locationSubscription;
 
 Future<void> _listenLocationStream() async {
-  if (await _checkAndRequestLocationPermission()) {
+  if (await _checkAndRequestPermission()) {
     if (_locationSubscription != null) await _cancelLocationSubscription();
 
     _locationSubscription = FlLocation.getLocationStream()

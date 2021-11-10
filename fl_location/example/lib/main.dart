@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:fl_location/fl_location.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(ExampleApp());
@@ -19,7 +21,7 @@ class _ExampleAppState extends State<ExampleApp> {
   ButtonState _getLocationButtonState = ButtonState.DONE;
   ButtonState _listenLocationStreamButtonState = ButtonState.DONE;
 
-  Future<bool> _checkAndRequestLocationPermission({bool? background}) async {
+  Future<bool> _checkAndRequestPermission({bool? background}) async {
     if (!await FlLocation.isLocationServicesEnabled) {
       // Location services are disabled.
       return false;
@@ -50,7 +52,7 @@ class _ExampleAppState extends State<ExampleApp> {
   }
 
   Future<void> _getLocation() async {
-    if (await _checkAndRequestLocationPermission()) {
+    if (await _checkAndRequestPermission()) {
       _getLocationButtonState = ButtonState.LOADING;
       _listenLocationStreamButtonState = ButtonState.DISABLED;
       _refreshPage();
@@ -69,7 +71,7 @@ class _ExampleAppState extends State<ExampleApp> {
   }
 
   Future<void> _listenLocationStream() async {
-    if (await _checkAndRequestLocationPermission()) {
+    if (await _checkAndRequestPermission()) {
       if (_locationSubscription != null) await _cancelLocationSubscription();
 
       _locationSubscription = FlLocation.getLocationStream()
@@ -100,9 +102,12 @@ class _ExampleAppState extends State<ExampleApp> {
   @override
   void initState() {
     super.initState();
-    FlLocation.getLocationServicesStatusStream().listen((event) {
-      print('location services status: $event');
-    });
+    // The getLocationServicesStatusStream function is not available in Web.
+    if (!kIsWeb) {
+      FlLocation.getLocationServicesStatusStream().listen((event) {
+        print('location services status: $event');
+      });
+    }
   }
 
   @override
@@ -124,13 +129,15 @@ class _ExampleAppState extends State<ExampleApp> {
   }
 
   Widget _buildContentView() {
-    final testButtonList = Column(
+    final buttonList = Column(
       children: [
+        const SizedBox(height: 8.0),
         _buildTestButton(
           text: 'GET Location',
           state: _getLocationButtonState,
           onPressed: _getLocation,
         ),
+        const SizedBox(height: 8.0),
         _buildTestButton(
           text: _locationSubscription == null
               ? 'Listen LocationStream'
@@ -149,8 +156,8 @@ class _ExampleAppState extends State<ExampleApp> {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       children: [
-        testButtonList,
-        SizedBox(height: 10.0),
+        buttonList,
+        const SizedBox(height: 10.0),
         resultText,
       ],
     );

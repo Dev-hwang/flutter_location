@@ -23,10 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fl_location/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fl_location/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fl_location/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +36,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/wjhwang/.android/avd/Pixel_3a_API_30_x86.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -159,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628472804614</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Implement fl_location_web plugin">
+      <created>1636519873258</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1636519873258</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,80 +195,7 @@
     <MESSAGE value="Fixed an issue where broadcast stream could not be fetched" />
     <MESSAGE value="Upgrade fl_location_platform_interface version: 1.0.1" />
     <MESSAGE value="Upgrade fl_location_platform_interface plugin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upgrade fl_location_platform_interface plugin" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="510" y="100" key="#Project_Structure" timestamp="1626245159072">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="510" y="100" key="#Project_Structure/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626245159072" />
-    <state x="518" y="182" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626925548221">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="518" y="182" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626925548221" />
-    <state x="797" y="329" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1627951755251">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="797" y="329" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1627951755251" />
-    <state x="840" y="242" key="#com.intellij.ide.util.MemberChooser" timestamp="1626312567193">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="840" y="242" key="#com.intellij.ide.util.MemberChooser/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626312567193" />
-    <state x="791" y="329" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1626925544401">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="791" y="329" key="#com.intellij.ide.util.TreeFileChooserDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626925544401" />
-    <state x="765" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1626309939872">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="765" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626309939872" />
-    <state x="788" y="198" key="CommitChangelistDialog2" timestamp="1628472804505">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="788" y="198" key="CommitChangelistDialog2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628472804505" />
-    <state x="284" y="112" width="1536" height="794" key="DiffContextDialog" timestamp="1628244021307">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="284" y="112" width="1536" height="794" key="DiffContextDialog/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628244021307" />
-    <state width="1762" height="441" key="GridCell.Tab.0.bottom" timestamp="1628246169903">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.bottom/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169903" />
-    <state width="1762" height="441" key="GridCell.Tab.0.center" timestamp="1628246169902">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.center/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169902" />
-    <state width="1762" height="441" key="GridCell.Tab.0.left" timestamp="1628246169902">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.left/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169902" />
-    <state width="1762" height="441" key="GridCell.Tab.0.right" timestamp="1628246169903">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state width="1762" height="441" key="GridCell.Tab.0.right/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246169903" />
-    <state x="506" y="158" key="SettingsEditor" timestamp="1628129562139">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="506" y="158" key="SettingsEditor/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628129562139" />
-    <state x="651" y="259" key="Vcs.Push.Dialog.v2" timestamp="1628246166375">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="651" y="259" key="Vcs.Push.Dialog.v2/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1628246166375" />
-    <state x="-1397" y="24" width="1335" height="974" key="dock-window-1" timestamp="1627448441132">
-      <screen x="-1792" y="23" width="1792" height="1097" />
-    </state>
-    <state x="-1397" y="24" width="1335" height="974" key="dock-window-1/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1627448441132" />
-    <state x="734" y="274" width="730" height="490" key="find.popup" timestamp="1627970900117">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="734" y="274" width="730" height="490" key="find.popup/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1627970900117" />
-    <state x="709" y="204" width="905" height="629" key="new project wizard" timestamp="1626684116692">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="709" y="204" width="905" height="629" key="new project wizard/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1626684116692" />
-    <state x="717" y="242" width="670" height="676" key="search.everywhere.popup" timestamp="1627952284770">
-      <screen x="0" y="23" width="1920" height="993" />
-    </state>
-    <state x="717" y="242" width="670" height="676" key="search.everywhere.popup/0.23.1920.993/-1792.23.1792.1097@0.23.1920.993" timestamp="1627952284770" />
+    <MESSAGE value="Implement fl_location_web plugin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement fl_location_web plugin" />
   </component>
 </project>
