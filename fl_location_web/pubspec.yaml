@@ -10,7 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  fl_location_platform_interface: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      web:
+        pluginClass: FlLocationWeb
+        fileName: fl_location_web.dart
