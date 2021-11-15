@@ -25,9 +25,14 @@
     <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location_web/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location_web/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location_web/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location_web/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location_web/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location_web/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636952979032</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Upgrade fl_location_web version: 1.1.0">
+      <created>1636953465008</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1636953465008</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +238,7 @@
     <MESSAGE value="Upgrade fl_location version: 1.1.0" />
     <MESSAGE value="Add location_utils.dart" />
     <MESSAGE value="Upgrade fl_location_platform_interface version: 1.1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upgrade fl_location_platform_interface version: 1.1.0" />
+    <MESSAGE value="Upgrade fl_location_web version: 1.1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade fl_location_web version: 1.1.0" />
   </component>
 </project>

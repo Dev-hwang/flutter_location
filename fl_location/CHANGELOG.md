@@ -1,3 +1,10 @@
+## 1.2.0
+
+* Upgrade dependencies.
+* Add utility class for plugins that collect location data.
+* Bump Android minSdkVersion to 23.
+* Bump Android compileSdkVersion to 31.
+
 ## 1.1.0
 
 * Now this plugin is also available on the web.
