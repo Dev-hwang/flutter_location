@@ -1,7 +1,7 @@
 name: fl_location_platform_interface
 description: A common platform interface for the fl_location plugin.
 homepage: https://github.com/Dev-hwang/flutter_location/tree/master/fl_location_platform_interface
-version: 1.0.1
+version: 1.1.0
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

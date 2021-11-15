@@ -22,19 +22,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="Upgrade fl_location version: 1.1.0">
+    <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="Add location_utils.dart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location_platform_interface/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location_platform_interface/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_location_platform_interface/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location_platform_interface/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/wjhwang/.android/avd/Pixel_3a_API_30_x86.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/wjhwang/.android/avd/Pixel_4_API_30.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -174,7 +172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1636521647758</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Upgrade fl_location version: 1.1.0">
+      <created>1636522297161</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1636522297161</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add location_utils.dart">
+      <created>1636952326975</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1636952326975</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +214,8 @@
     <MESSAGE value="Upgrade fl_location_platform_interface plugin" />
     <MESSAGE value="Implement fl_location_web plugin" />
     <MESSAGE value="Depend on fl_location_web" />
-    <option name="LAST_COMMIT_MESSAGE" value="Depend on fl_location_web" />
+    <MESSAGE value="Upgrade fl_location version: 1.1.0" />
+    <MESSAGE value="Add location_utils.dart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add location_utils.dart" />
   </component>
 </project>
