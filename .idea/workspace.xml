@@ -23,16 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cfa2723-5fb3-4ae3-9472-151e3d10f72c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fl_location/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fl_location/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +39,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1vIMTQgbGihHgRPGGs0cQNAig0H" />
