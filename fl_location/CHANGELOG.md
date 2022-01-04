@@ -1,3 +1,8 @@
+## 1.2.1
+
+* Upgrade dependencies.
+* Downgrade Android minSdkVersion to 21.
+
 ## 1.2.0
 
 * Upgrade dependencies.
