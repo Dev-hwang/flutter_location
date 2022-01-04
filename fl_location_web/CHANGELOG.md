@@ -1,7 +1,7 @@
 ## 1.1.0
 
 * Upgrade dependencies.
-* Add utility class for plugins that collect location data.
+* Added LocationUtils class which implements `distanceBetween` and `bearingBetween` functions.
 
 ## 1.0.0
 

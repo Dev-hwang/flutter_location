@@ -1,7 +1,7 @@
 ## 1.2.0
 
 * Upgrade dependencies.
-* Add utility class for plugins that collect location data.
+* Added LocationUtils class which implements `distanceBetween` and `bearingBetween` functions.
 * Bump Android minSdkVersion to 23.
 * Bump Android compileSdkVersion to 31.
 
