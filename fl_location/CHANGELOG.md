@@ -1,3 +1,7 @@
+## 1.2.2
+
+* [[#4](https://github.com/Dev-hwang/flutter_location/issues/4)] Fix onRequestPermissionsResult implement issue.
+
 ## 1.2.1
 
 * Upgrade dependencies.
