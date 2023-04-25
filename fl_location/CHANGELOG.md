@@ -1,3 +1,8 @@
+## 2.0.0
+
+* [**CHORE**] Upgrade minimum Flutter version to 3.0.0
+* [**CHORE**] Upgrade dependencies
+
 ## 1.2.2
 
 * [[#4](https://github.com/Dev-hwang/flutter_location/issues/4)] Fix onRequestPermissionsResult implement issue.
