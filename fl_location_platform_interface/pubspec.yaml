@@ -1,20 +1,20 @@
 name: fl_location_platform_interface
 description: A common platform interface for the fl_location plugin.
 homepage: https://github.com/Dev-hwang/flutter_location/tree/master/fl_location_platform_interface
-version: 1.1.1
+version: 2.0.0
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.20.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.7.0
-  vector_math: ^2.1.0
-  plugin_platform_interface: ^2.0.2
+  meta: ^1.8.0
+  vector_math: ^2.1.4
+  plugin_platform_interface: ^2.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.17
+  mockito: ^5.4.0
