@@ -1,6 +1,6 @@
 package com.pravera.fl_location.models
 
-import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.Priority
 
 enum class LocationAccuracy {
 	POWER_SAVE,
@@ -25,12 +25,12 @@ enum class LocationAccuracy {
 
 	fun toPriority(): Int {
 		return when (this) {
-			POWER_SAVE -> LocationRequest.PRIORITY_LOW_POWER
-			LOW -> LocationRequest.PRIORITY_LOW_POWER
-			BALANCED -> LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
-			HIGH -> LocationRequest.PRIORITY_HIGH_ACCURACY
-			BEST -> LocationRequest.PRIORITY_HIGH_ACCURACY
-			NAVIGATION -> LocationRequest.PRIORITY_HIGH_ACCURACY
+			POWER_SAVE -> Priority.PRIORITY_LOW_POWER
+			LOW -> Priority.PRIORITY_LOW_POWER
+			BALANCED -> Priority.PRIORITY_BALANCED_POWER_ACCURACY
+			HIGH -> Priority.PRIORITY_HIGH_ACCURACY
+			BEST -> Priority.PRIORITY_HIGH_ACCURACY
+			NAVIGATION -> Priority.PRIORITY_HIGH_ACCURACY
 		}
 	}
 }

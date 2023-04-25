@@ -126,7 +126,7 @@ class LocationDataProvider(private val context: Context) {
 	private fun createLocationCallback(callback: LocationDataCallback): LocationCallback {
 		return object : LocationCallback() {
 			override fun onLocationResult(locationResult: LocationResult) {
-				val location = locationResult.lastLocation
+				val location = locationResult.lastLocation ?: return
 
 				var speedAccuracy: Double? = null
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -158,11 +158,13 @@ class LocationDataProvider(private val context: Context) {
 	}
 
 	private fun createLocationRequest(settings: LocationSettings): LocationRequest {
-		return LocationRequest.create().apply {
-			priority = settings.accuracy.toPriority()
-			interval = settings.interval ?: DEFAULT_LOCATION_INTERVAL
-			fastestInterval = settings.interval ?: DEFAULT_LOCATION_INTERVAL / 2
-			smallestDisplacement = settings.distanceFilter ?: 0F
-		}
+		val accuracy = settings.accuracy.toPriority()
+		val interval = settings.interval ?: DEFAULT_LOCATION_INTERVAL
+		val distanceFilter = settings.distanceFilter ?: 0F
+
+		return LocationRequest.Builder(accuracy, interval).apply {
+			setMinUpdateDistanceMeters(distanceFilter)
+			setMinUpdateIntervalMillis(interval)
+		}.build()
 	}
 }
