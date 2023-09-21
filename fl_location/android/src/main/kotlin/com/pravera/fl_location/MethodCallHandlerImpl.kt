@@ -26,8 +26,7 @@ class MethodCallHandlerImpl(
 	override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
 		val reqMethod = call.method
 		if (reqMethod.contains("checkLocationPermission") ||
-				reqMethod.contains("requestLocationPermission") ||
-				reqMethod.contains("getLocation")) {
+				reqMethod.contains("requestLocationPermission")) {
 			if (activity == null) {
 				ErrorHandleUtils.handleMethodCallError(result, ErrorCodes.ACTIVITY_NOT_ATTACHED)
 				return
@@ -76,7 +75,7 @@ class MethodCallHandlerImpl(
 
 				serviceProvider
 						.getLocationDataProviderManager()
-						.getLocation(activity, callback, settings)
+						.getLocation(callback, settings)
 			}
 			else -> result.notImplemented()
 		}
@@ -92,7 +91,8 @@ class MethodCallHandlerImpl(
 	}
 
 	override fun disposeChannel() {
-		if (::channel.isInitialized)
+		if (::channel.isInitialized) {
 			channel.setMethodCallHandler(null)
+		}
 	}
 }

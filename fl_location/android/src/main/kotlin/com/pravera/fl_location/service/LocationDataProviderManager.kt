@@ -12,10 +12,14 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 
 	private fun buildLocationDataProvider() = LocationDataProvider(context)
 
-	fun getLocation(
-			activity: Activity?,
-			callback: LocationDataCallback,
-			settings: LocationSettings): Int {
+	fun setActivity(activity: Activity?) {
+		val iterator = providers.values.iterator()
+		for (provider in iterator) {
+			provider.setActivity(activity)
+		}
+	}
+
+	fun getLocation(callback: LocationDataCallback, settings: LocationSettings): Int {
 		val newLocationDataProvider = buildLocationDataProvider()
 		val hashCode = newLocationDataProvider.hashCode()
 		providers[hashCode] = newLocationDataProvider
@@ -31,20 +35,16 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 				callback.onError(errorCode)
 			}
 		}
-
-		newLocationDataProvider.requestLocationUpdates(activity, newCallback, settings)
+		newLocationDataProvider.requestLocationUpdates(newCallback, settings)
 		return hashCode
 	}
 
-	fun requestLocationUpdates(
-			activity: Activity?,
-			callback: LocationDataCallback,
-			settings: LocationSettings): Int {
+	fun requestLocationUpdates(callback: LocationDataCallback, settings: LocationSettings): Int {
 		val newLocationDataProvider = buildLocationDataProvider()
 		val hashCode = newLocationDataProvider.hashCode()
 		providers[hashCode] = newLocationDataProvider
 
-		newLocationDataProvider.requestLocationUpdates(activity, callback, settings)
+		newLocationDataProvider.requestLocationUpdates(callback, settings)
 		return hashCode
 	}
 

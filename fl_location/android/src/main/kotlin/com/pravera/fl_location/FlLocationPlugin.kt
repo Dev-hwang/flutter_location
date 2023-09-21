@@ -46,6 +46,7 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
     methodCallHandler.setActivity(binding.activity)
     locationStreamHandler.setActivity(binding.activity)
     locationServicesStatusStreamHandler.setActivity(binding.activity)
+    locationDataProviderManager.setActivity(binding.activity)
     binding.addRequestPermissionsResultListener(locationPermissionManager)
     binding.addActivityResultListener(locationDataProviderManager)
     activityBinding = binding
@@ -66,6 +67,7 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
     methodCallHandler.setActivity(null)
     locationStreamHandler.setActivity(null)
     locationServicesStatusStreamHandler.setActivity(null)
+    locationDataProviderManager.setActivity(null)
   }
 
   override fun getLocationPermissionManager() = locationPermissionManager

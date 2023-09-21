@@ -33,8 +33,9 @@ class LocationDataProvider(private val context: Context) {
 		if (requestCode == REQUEST_CHECK_SETTINGS) {
 			if (resultCode == Activity.RESULT_OK) {
 				// The stopLocationUpdates function has already been called.
-				if (callback == null) return false
-
+				if (callback == null) {
+					return false
+				}
 				startLocationUpdates()
 				return true
 			} else {
@@ -45,27 +46,26 @@ class LocationDataProvider(private val context: Context) {
 		return false
 	}
 
-	fun requestLocationUpdates(
-			activity: Activity?,
-			callback: LocationDataCallback,
-			settings: LocationSettings) {
-		if (this.callback != null) stopLocationUpdates()
-
+	fun setActivity(activity: Activity?) {
 		this.activity = activity
+	}
+
+	fun requestLocationUpdates(callback: LocationDataCallback, settings: LocationSettings) {
+		stopLocationUpdates()
 		this.callback = callback
 		this.settings = settings
 		this.locationCallback = createLocationCallback(callback)
 		this.locationRequest = createLocationRequest(settings)
-
 		checkLocationSettingsAndStartLocationUpdates()
 	}
 
 	private fun checkLocationSettingsAndStartLocationUpdates() {
-		val settingsRequestBuilder = LocationSettingsRequest.Builder()
-		settingsRequestBuilder.addLocationRequest(locationRequest!!)
+		val settingsRequest = LocationSettingsRequest.Builder()
+			.addLocationRequest(locationRequest!!)
+			.build()
 
 		val settingsClient = LocationServices.getSettingsClient(context)
-		settingsClient.checkLocationSettings(settingsRequestBuilder.build())
+		settingsClient.checkLocationSettings(settingsRequest)
 				.addOnSuccessListener {
 					startLocationUpdates()
 				}
@@ -114,9 +114,9 @@ class LocationDataProvider(private val context: Context) {
 	}
 
 	fun stopLocationUpdates() {
-		if (locationCallback != null)
+		if (locationCallback != null) {
 			locationProvider.removeLocationUpdates(locationCallback!!)
-		this.activity = null
+		}
 		this.callback = null
 		this.settings = null
 		this.locationCallback = null
@@ -129,12 +129,14 @@ class LocationDataProvider(private val context: Context) {
 				val location = locationResult.lastLocation ?: return
 
 				var speedAccuracy: Double? = null
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 					speedAccuracy = location.speedAccuracyMetersPerSecond.toDouble()
+				}
 
 				var isMock: Boolean? = null
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-					isMock = location.isFromMockProvider
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+					isMock = location.isMock
+				}
 
 				val locationData = LocationData(
 					latitude = location.latitude,

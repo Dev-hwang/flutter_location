@@ -36,7 +36,7 @@ class LocationStreamHandlerImpl(
 
 		locationDataProviderHashCode = serviceProvider
 				.getLocationDataProviderManager()
-				.requestLocationUpdates(activity, callback, settings)
+				.requestLocationUpdates(callback, settings)
 	}
 
 	override fun onCancel(arguments: Any?) {
@@ -57,7 +57,8 @@ class LocationStreamHandlerImpl(
 	}
 
 	override fun disposeChannel() {
-		if (::channel.isInitialized)
+		if (::channel.isInitialized) {
 			channel.setStreamHandler(null)
+		}
 	}
 }
