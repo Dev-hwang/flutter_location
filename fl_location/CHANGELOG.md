@@ -1,3 +1,9 @@
+## 2.1.0
+
+* [**FEAT**] Add ability to get location in the background [#10](https://github.com/Dev-hwang/flutter_location/issues/10)
+* [**FIX**] Fix ConcurrentModificationException [#13](https://github.com/Dev-hwang/flutter_location/issues/13)
+* [**FIX**] Fix location update channel close issue [#14](https://github.com/Dev-hwang/flutter_location/issues/14)
+
 ## 2.0.0
 
 * [**CHORE**] Upgrade minimum Flutter version to 3.0.0
