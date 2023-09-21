@@ -34,12 +34,16 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
   }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-    if (::methodCallHandler.isInitialized)
+    if (::methodCallHandler.isInitialized) {
       methodCallHandler.disposeChannel()
-    if (::locationStreamHandler.isInitialized)
+    }
+    if (::locationStreamHandler.isInitialized) {
       locationStreamHandler.disposeChannel()
-    if (::locationServicesStatusStreamHandler.isInitialized)
+    }
+    if (::locationServicesStatusStreamHandler.isInitialized) {
       locationServicesStatusStreamHandler.disposeChannel()
+    }
+    locationDataProviderManager.stopAllLocationUpdates()
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {

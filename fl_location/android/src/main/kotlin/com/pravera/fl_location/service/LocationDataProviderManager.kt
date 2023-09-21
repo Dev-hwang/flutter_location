@@ -55,6 +55,14 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 		}
 	}
 
+	fun stopAllLocationUpdates() {
+		val iterator = providers.values.iterator()
+		for (provider in iterator) {
+			provider.stopLocationUpdates()
+		}
+		providers.clear()
+	}
+
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
 		val iterator = providers.values.iterator()
 		for (provider in iterator) {
