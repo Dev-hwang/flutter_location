@@ -56,7 +56,8 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 	}
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-		for (provider in providers.values) {
+		val iterator = providers.values.iterator()
+		for (provider in iterator) {
 			if (provider.onActivityResult(requestCode, resultCode)) {
 				return true
 			}
