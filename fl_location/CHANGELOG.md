@@ -1,3 +1,7 @@
+## 2.1.1
+
+* [**FIX**] Fix IllegalStateException [#12](https://github.com/Dev-hwang/flutter_location/issues/12)
+
 ## 2.1.0
 
 * [**FEAT**] Add ability to get location in the background [#10](https://github.com/Dev-hwang/flutter_location/issues/10)
