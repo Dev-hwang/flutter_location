@@ -29,6 +29,9 @@ class LocationDataProvider(private val context: Context) {
 	private var locationCallback: LocationCallback? = null
 	private var locationRequest: LocationRequest? = null
 
+	var isRunningLocationUpdates = false
+		private set
+
 	fun onActivityResult(requestCode: Int, resultCode: Int): Boolean {
 		if (requestCode == REQUEST_CHECK_SETTINGS) {
 			if (resultCode == Activity.RESULT_OK) {
@@ -107,14 +110,16 @@ class LocationDataProvider(private val context: Context) {
 	}
 
 	private fun startLocationUpdates() {
-		if (locationCallback == null || locationRequest == null) return
+		if (locationRequest == null || locationCallback == null) return
 
+		isRunningLocationUpdates = true
 		locationProvider.requestLocationUpdates(
 				locationRequest!!, locationCallback!!, Looper.getMainLooper())
 	}
 
 	fun stopLocationUpdates() {
 		if (locationCallback != null) {
+			isRunningLocationUpdates = false
 			locationProvider.removeLocationUpdates(locationCallback!!)
 		}
 		this.callback = null

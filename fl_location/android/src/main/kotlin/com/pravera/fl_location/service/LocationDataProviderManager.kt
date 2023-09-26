@@ -26,13 +26,17 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 
 		val newCallback = object : LocationDataCallback {
 			override fun onUpdate(locationJson: String) {
-				stopLocationUpdates(hashCode)
-				callback.onUpdate(locationJson)
+				if (newLocationDataProvider.isRunningLocationUpdates) {
+					stopLocationUpdates(hashCode)
+					callback.onUpdate(locationJson)
+				}
 			}
 
 			override fun onError(errorCode: ErrorCodes) {
-				stopLocationUpdates(hashCode)
-				callback.onError(errorCode)
+				if (newLocationDataProvider.isRunningLocationUpdates) {
+					stopLocationUpdates(hashCode)
+					callback.onError(errorCode)
+				}
 			}
 		}
 		newLocationDataProvider.requestLocationUpdates(newCallback, settings)
