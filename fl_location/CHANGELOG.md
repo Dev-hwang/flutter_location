@@ -1,3 +1,7 @@
+## 3.0.0
+
+* [**CHORE**] Update dependency constraints to `sdk: '>=2.18.0 <4.0.0'` `flutter: '>=3.3.0'`
+
 ## 2.1.1
 
 * [**FIX**] Fix IllegalStateException [#12](https://github.com/Dev-hwang/flutter_location/issues/12)

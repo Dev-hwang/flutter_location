@@ -1,7 +1,7 @@
 name: fl_location
 description: A plugin that can access the location services of each platform and collect device location data.
 homepage: https://github.com/Dev-hwang/flutter_location/tree/master/fl_location
-version: 2.1.1
+version: 3.0.0
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fl_location_platform_interface: ^2.0.0
-  fl_location_web: ^2.0.0
+  fl_location_platform_interface: ^3.0.0
+  fl_location_web: ^3.0.0
 
 dev_dependencies:
   flutter_test:
