@@ -57,10 +57,10 @@ class LocationServicesStatusWatcher: SharedPreferences.OnSharedPreferenceChangeL
 		broadcastReceiver = null
 	}
 
-	override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+	override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
 		when (key) {
 			LOCATION_SERVICES_STATUS_PREFS_KEY -> {
-				val value = sharedPreferences.getString(key, null) ?: return
+				val value = sharedPreferences?.getString(key, null) ?: return
 				val locationServicesStatus = LocationServicesStatus.valueOf(value)
 				onChangedCallback?.invoke(locationServicesStatus)
 			}
