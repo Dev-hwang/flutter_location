@@ -1,3 +1,9 @@
+## 4.0.0
+
+* [**CHORE**] Updates minimum supported SDK version to `Flutter 3.10` / `Dart 3.0`
+* [**CHORE**] Updates dependencies
+* [**FIX**] Fixed an issue where Location.toJson could not be encoded with jsonEncode
+
 ## 3.1.0
 
 * [**FEAT**] Support AGP 8

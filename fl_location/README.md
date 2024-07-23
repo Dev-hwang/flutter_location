@@ -12,8 +12,8 @@ A plugin that can access the location services of each platform and collect devi
 
 * Can request location permission.
 * Can get the current location of the device.
-* Can check whether location services are enabled.
-* Can subscribe to `LocationStream` to collect location data in real time.
+* Can check whether location services is enabled.
+* Can subscribe to `LocationStream` to listen location in real time.
 * Can subscribe to `LocationServicesStatusStream` to listen location services status changes in real time.
 
 ## Getting started
@@ -22,7 +22,7 @@ To use this plugin, add `fl_location` as a [dependency in your pubspec.yaml file
 
 ```yaml
 dependencies:
-  fl_location: ^3.1.0
+  fl_location: ^4.0.0
 ```
 
 After adding the `fl_location` plugin to the flutter project, we need to specify the platform-specific permissions for this plugin to work properly.
@@ -67,74 +67,83 @@ If you want to get the location in the background, add the following description
 
 ## How to use
 
-1. Check whether the location permission is allowed or not, and if not allowed, request the location permission.
+1. Check whether the location permission is granted or not, and if not granted, request the location permission.
 
 ```dart
 Future<bool> _checkAndRequestPermission({bool? background}) async {
   if (!await FlLocation.isLocationServicesEnabled) {
-    // Location services are disabled.
+    // Location services is disabled.
     return false;
   }
 
   var locationPermission = await FlLocation.checkLocationPermission();
   if (locationPermission == LocationPermission.deniedForever) {
-    // Cannot request runtime permission because location permission is denied forever.
+    // Location permission has been permanently denied.
     return false;
   } else if (locationPermission == LocationPermission.denied) {
     // Ask the user for location permission.
     locationPermission = await FlLocation.requestLocationPermission();
     if (locationPermission == LocationPermission.denied ||
-        locationPermission == LocationPermission.deniedForever) return false;
+        locationPermission == LocationPermission.deniedForever) {
+      // Location permission has been denied.
+      return false;
+    }
   }
 
-  // Location permission must always be allowed (LocationPermission.always)
+  // Location permission must always be granted (LocationPermission.always)
   // to collect location data in the background.
   if (background == true &&
-      locationPermission == LocationPermission.whileInUse) return false;
+      locationPermission == LocationPermission.whileInUse) {
+    // Location permission must always be granted to collect location in the background.
+    return false;
+  }
 
-  // Location services has been enabled and permission have been granted.
   return true;
 }
 ```
 
-2. To get the current location, use the `getLocation` function.
+2. To get the current Location, use the `getLocation` function.
 
 ```dart
 Future<void> _getLocation() async {
   if (await _checkAndRequestPermission()) {
-    final timeLimit = const Duration(seconds: 10);
+    final Duration timeLimit = const Duration(seconds: 10);
     await FlLocation.getLocation(timeLimit: timeLimit).then((location) {
       print('location: ${location.toJson().toString()}');
-    }).onError((error, stackTrace) {
+    }).onError((error, _) {
       print('error: ${error.toString()}');
     });
   }
 }
 ```
 
-3. To collect location data in real time, use the `getLocationStream` function.
+3. To listen location in real time, use the `getLocationStream` function.
 
 ```dart
 StreamSubscription<Location>? _locationSubscription;
 
-Future<void> _listenLocationStream() async {
+Future<void> _subscribeLocationStream() async {
   if (await _checkAndRequestPermission()) {
-    if (_locationSubscription != null) await _cancelLocationSubscription();
+    if (_locationSubscription != null) {
+      await _unsubscribeLocationStream();
+    }
 
     _locationSubscription = FlLocation.getLocationStream()
         .handleError(_handleError)
-        .listen((event) {
-      print('location: ${event.toJson().toString()}');
-    });
+        .listen(_onLocationDetected);
   }
 }
 
-Future<void> _cancelLocationSubscription() async {
+Future<void> _unsubscribeLocationStream() async {
   await _locationSubscription?.cancel();
   _locationSubscription = null;
 }
 
-void _handleError(dynamic error, StackTrace stackTrace) {
+void _onLocationDetected(Location location) {
+  print('location: ${event.toJson().toString()}');
+}
+
+void _handleError(dynamic error) {
   print('error: ${error.toString()}');
 }
 ```
@@ -144,17 +153,18 @@ void _handleError(dynamic error, StackTrace stackTrace) {
 ```dart
 StreamSubscription<LocationServicesStatus>? _locationServicesStatusSubscription;
 
-Future<void> _listenLocationServicesStatusStream() async {
-  if (_locationServicesStatusSubscription != null)
-    await _cancelLocationServicesStatusSubscription();
+Future<void> _subscribeLocationServicesStatusStream() async {
+  if (_locationServicesStatusSubscription != null) {
+    await _unsubscribeLocationServicesStatusStream();
+  }
 
   _locationServicesStatusSubscription =
       FlLocation.getLocationServicesStatusStream().listen((event) {
-    print('location services status: $event');
+    print('LocationServicesStatus: $event');
   });
 }
 
-Future<void> _cancelLocationServicesStatusSubscription() async {
+Future<void> _unsubscribeLocationServicesStatusStream() async {
   await _locationServicesStatusSubscription?.cancel();
   _locationServicesStatusSubscription = null;
 }

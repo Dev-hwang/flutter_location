@@ -2,7 +2,7 @@ import 'package:fl_location_platform_interface/fl_location_platform_interface.da
 export 'package:fl_location_platform_interface/fl_location_platform_interface.dart';
 
 class FlLocation {
-  /// Whether location services are enabled.
+  /// Whether location services is enabled.
   static Future<bool> get isLocationServicesEnabled =>
       FlLocationPlatform.instance.isLocationServicesEnabled();
 
@@ -14,7 +14,7 @@ class FlLocation {
   static Future<LocationPermission> requestLocationPermission() =>
       FlLocationPlatform.instance.requestLocationPermission();
 
-  /// Get the current location.
+  /// Get the current [Location].
   static Future<Location> getLocation({
     LocationAccuracy accuracy = LocationAccuracy.best,
     Duration? timeLimit,
@@ -22,7 +22,7 @@ class FlLocation {
       FlLocationPlatform.instance
           .getLocation(accuracy: accuracy, timeLimit: timeLimit);
 
-  /// Get the location stream.
+  /// Get the [Location] stream.
   static Stream<Location> getLocationStream({
     LocationAccuracy accuracy = LocationAccuracy.best,
     int interval = 5000,
@@ -33,7 +33,7 @@ class FlLocation {
           interval: interval,
           distanceFilter: distanceFilter);
 
-  /// Get the location services status stream.
+  /// Get the [LocationServicesStatus] stream.
   static Stream<LocationServicesStatus> getLocationServicesStatusStream() =>
       FlLocationPlatform.instance.getLocationServicesStatusStream();
 }
