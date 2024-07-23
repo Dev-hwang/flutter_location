@@ -51,11 +51,15 @@ class Location {
     if (lat == null) throw ArgumentError.notNull('latitude');
     if (lon == null) throw ArgumentError.notNull('longitude');
 
-    final double? millisecondsSinceEpoch =
+    double? millisecondsSinceEpoch =
         double.tryParse(json['millisecondsSinceEpoch'].toString());
-    final DateTime timestamp = millisecondsSinceEpoch == null
-        ? DateTime.now()
-        : DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch.toInt());
+    if (millisecondsSinceEpoch == null) {
+      millisecondsSinceEpoch =
+          DateTime.timestamp().millisecondsSinceEpoch.toDouble();
+    }
+
+    final DateTime timestamp =
+        DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch.toInt());
 
     return Location(
       latitude: lat,
@@ -65,8 +69,7 @@ class Location {
       heading: double.tryParse(json['heading'].toString()) ?? 0.0,
       speed: double.tryParse(json['speed'].toString()) ?? 0.0,
       speedAccuracy: double.tryParse(json['speedAccuracy'].toString()) ?? 0.0,
-      millisecondsSinceEpoch:
-          millisecondsSinceEpoch ?? timestamp.millisecondsSinceEpoch.toDouble(),
+      millisecondsSinceEpoch: millisecondsSinceEpoch,
       timestamp: timestamp,
       isMock: json['isMock'] ?? false,
     );
@@ -83,7 +86,7 @@ class Location {
       'speed': speed,
       'speedAccuracy': speedAccuracy,
       'millisecondsSinceEpoch': millisecondsSinceEpoch,
-      'timestamp': timestamp,
+      'timestamp': timestamp.toString(),
       'isMock': isMock,
     };
   }
