@@ -28,14 +28,14 @@ class MethodChannelFlLocation extends FlLocationPlatform {
   Future<LocationPermission> checkLocationPermission() async {
     final int result =
         await methodChannel.invokeMethod('checkLocationPermission');
-    return getLocationPermissionFromIndex(result);
+    return LocationPermission.fromIndex(result);
   }
 
   @override
   Future<LocationPermission> requestLocationPermission() async {
     final int result =
         await methodChannel.invokeMethod('requestLocationPermission');
-    return getLocationPermissionFromIndex(result);
+    return LocationPermission.fromIndex(result);
   }
 
   @override
@@ -74,6 +74,6 @@ class MethodChannelFlLocation extends FlLocationPlatform {
   Stream<LocationServicesStatus> getLocationServicesStatusStream() {
     return _locationServicesStatusStream ??= locationServicesStatusEventChannel
         .receiveBroadcastStream()
-        .map((event) => getLocationServicesStatusFromIndex(event));
+        .map((event) => LocationServicesStatus.fromIndex(event));
   }
 }

@@ -4,10 +4,8 @@ enum LocationServicesStatus {
   enabled,
 
   /// Location services are disabled.
-  disabled,
-}
+  disabled;
 
-/// Get [LocationServicesStatus] from [index].
-LocationServicesStatus getLocationServicesStatusFromIndex(int? index) =>
-    LocationServicesStatus
-        .values[index ?? LocationServicesStatus.disabled.index];
+  static LocationServicesStatus fromIndex(int? index) => LocationServicesStatus
+      .values[index ?? LocationServicesStatus.disabled.index];
+}

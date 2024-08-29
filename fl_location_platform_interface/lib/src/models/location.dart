@@ -51,6 +51,13 @@ class Location {
     if (lat == null) throw ArgumentError.notNull('latitude');
     if (lon == null) throw ArgumentError.notNull('longitude');
 
+    final double accuracy = double.tryParse(json['accuracy'].toString()) ?? 0;
+    final double altitude = double.tryParse(json['altitude'].toString()) ?? 0;
+    final double heading = double.tryParse(json['heading'].toString()) ?? 0;
+    final double speed = double.tryParse(json['speed'].toString()) ?? 0;
+    final double speedAccuracy =
+        double.tryParse(json['speedAccuracy'].toString()) ?? 0;
+
     double? millisecondsSinceEpoch =
         double.tryParse(json['millisecondsSinceEpoch'].toString());
     if (millisecondsSinceEpoch == null) {
@@ -61,17 +68,19 @@ class Location {
     final DateTime timestamp =
         DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch.toInt());
 
+    final bool isMock = json['isMock'] ?? false;
+
     return Location(
       latitude: lat,
       longitude: lon,
-      accuracy: double.tryParse(json['accuracy'].toString()) ?? 0.0,
-      altitude: double.tryParse(json['altitude'].toString()) ?? 0.0,
-      heading: double.tryParse(json['heading'].toString()) ?? 0.0,
-      speed: double.tryParse(json['speed'].toString()) ?? 0.0,
-      speedAccuracy: double.tryParse(json['speedAccuracy'].toString()) ?? 0.0,
+      accuracy: accuracy,
+      altitude: altitude,
+      heading: heading,
+      speed: speed,
+      speedAccuracy: speedAccuracy,
       millisecondsSinceEpoch: millisecondsSinceEpoch,
       timestamp: timestamp,
-      isMock: json['isMock'] ?? false,
+      isMock: isMock,
     );
   }
 
@@ -105,7 +114,8 @@ class Location {
       speed == other.speed &&
       speedAccuracy == other.speedAccuracy &&
       millisecondsSinceEpoch == other.millisecondsSinceEpoch &&
-      timestamp == other.timestamp &&
+      timestamp.millisecondsSinceEpoch ==
+          other.timestamp.millisecondsSinceEpoch &&
       isMock == other.isMock;
 
   @override

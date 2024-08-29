@@ -16,9 +16,8 @@ enum LocationPermission {
   /// The location cannot be read because permission is denied.
   ///
   /// The app can no longer request runtime permissions and must grant permissions manually.
-  deniedForever,
-}
+  deniedForever;
 
-/// Get [LocationPermission] from [index].
-LocationPermission getLocationPermissionFromIndex(int? index) =>
-    LocationPermission.values[index ?? LocationPermission.denied.index];
+  static LocationPermission fromIndex(int? index) =>
+      LocationPermission.values[index ?? LocationPermission.denied.index];
+}
