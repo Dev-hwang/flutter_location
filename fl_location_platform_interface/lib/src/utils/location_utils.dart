@@ -11,14 +11,14 @@ class LocationUtils {
     double endLat,
     double endLon,
   ) {
-    final dLat = _toRadians(endLat - startLat);
-    final dLon = _toRadians(endLon - startLon);
+    final double dLat = _toRadians(endLat - startLat);
+    final double dLon = _toRadians(endLon - startLon);
 
-    final a = pow(sin(dLat / 2), 2) +
+    final double a = pow(sin(dLat / 2), 2) +
         pow(sin(dLon / 2), 2) *
             cos(_toRadians(startLat)) *
             cos(_toRadians(endLat));
-    final c = 2 * asin(sqrt(a));
+    final double c = 2 * asin(sqrt(a));
 
     return 6378137.0 * c;
   }
@@ -30,13 +30,13 @@ class LocationUtils {
     double endLat,
     double endLon,
   ) {
-    final startLatRadians = radians(startLat);
-    final startLonRadians = radians(startLon);
-    final endLatRadians = radians(endLat);
-    final endLonRadians = radians(endLon);
+    final double startLatRadians = radians(startLat);
+    final double startLonRadians = radians(startLon);
+    final double endLatRadians = radians(endLat);
+    final double endLonRadians = radians(endLon);
 
-    var y = sin(endLonRadians - startLonRadians) * cos(endLatRadians);
-    var x = cos(startLatRadians) * sin(endLatRadians) -
+    final double y = sin(endLonRadians - startLonRadians) * cos(endLatRadians);
+    final double x = cos(startLatRadians) * sin(endLatRadians) -
         sin(startLatRadians) *
             cos(endLatRadians) *
             cos(endLonRadians - startLonRadians);
@@ -44,5 +44,5 @@ class LocationUtils {
     return degrees(atan2(y, x));
   }
 
-  static _toRadians(double degree) => degree * pi / 180;
+  static double _toRadians(double degree) => degree * pi / 180;
 }
