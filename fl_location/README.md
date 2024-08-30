@@ -22,7 +22,7 @@ To use this plugin, add `fl_location` as a [dependency in your pubspec.yaml file
 
 ```yaml
 dependencies:
-  fl_location: ^4.0.0
+  fl_location: ^4.1.0
 ```
 
 After adding the `fl_location` plugin to the flutter project, we need to specify the platform-specific permissions for this plugin to work properly.
@@ -169,6 +169,12 @@ Future<void> _unsubscribeLocationServicesStatusStream() async {
   _locationServicesStatusSubscription = null;
 }
 ```
+
+## Background Mode
+
+If you want to use this plugin in the background, try the [`flutter_foreground_task`](https://pub.dev/packages/flutter_foreground_task) plugin.
+
+demo: https://github.com/Dev-hwang/flutter_foreground_task_example/tree/main/location_service
 
 ## Models
 

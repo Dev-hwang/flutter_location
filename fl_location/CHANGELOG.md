@@ -1,3 +1,7 @@
+## 4.1.0
+
+* [**CHORE**] Upgrade dependencies
+
 ## 4.0.0
 
 * [**CHORE**] Updates minimum supported SDK version to `Flutter 3.10` / `Dart 3.0`
