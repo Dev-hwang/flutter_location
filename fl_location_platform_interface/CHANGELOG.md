@@ -1,3 +1,8 @@
+## 5.0.0
+
+* [**BREAKING**] Change platform channel name
+* [**TEST**] Add test file
+
 ## 4.0.0
 
 * [**CHORE**] Updates minimum supported SDK version to `Flutter 3.10` / `Dart 3.0`
