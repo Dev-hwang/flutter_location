@@ -16,5 +16,8 @@ enum LocationAccuracy {
   best,
 
   /// The location has an accuracy of ~100m on Android and optimized for navigation on iOS.
-  navigation,
+  navigation;
+
+  static LocationAccuracy fromIndex(int? index) =>
+      LocationAccuracy.values[index ?? LocationAccuracy.powerSave.index];
 }

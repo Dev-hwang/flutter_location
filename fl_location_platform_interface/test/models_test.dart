@@ -1,4 +1,5 @@
 import 'package:fl_location_platform_interface/fl_location_platform_interface.dart';
+import 'package:fl_location_platform_interface/src/models/location_accuracy.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'location_dummy.dart';
@@ -47,6 +48,18 @@ void main() {
       final Location locationA = Location.fromJson(dummyLocationJsonA);
       final Location locationB = Location.fromJson(dummyLocationJsonB);
       expect(locationA, isNot(locationB));
+    });
+  });
+
+  group('location_accuracy', () {
+    test('fromIndex test', () {
+      expect(LocationAccuracy.fromIndex(0), LocationAccuracy.powerSave);
+      expect(LocationAccuracy.fromIndex(1), LocationAccuracy.low);
+      expect(LocationAccuracy.fromIndex(2), LocationAccuracy.balanced);
+      expect(LocationAccuracy.fromIndex(3), LocationAccuracy.high);
+      expect(LocationAccuracy.fromIndex(4), LocationAccuracy.best);
+      expect(LocationAccuracy.fromIndex(5), LocationAccuracy.navigation);
+      expect(LocationAccuracy.fromIndex(null), LocationAccuracy.powerSave);
     });
   });
 
