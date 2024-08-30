@@ -14,13 +14,13 @@ class LocationServicesStatusStreamHandlerImpl: NSObject, FlutterStreamHandler {
   
   init(messenger: FlutterBinaryMessenger, serviceProvider: ServiceProvider) {
     self.serviceProvider = serviceProvider
-    self.channel = FlutterEventChannel(name: "plugins.pravera.com/fl_location/location_services_status", binaryMessenger: messenger)
+    self.channel = FlutterEventChannel(name: "fl_location/location_services_status", binaryMessenger: messenger)
     super.init()
     self.channel.setStreamHandler(self)
   }
   
   func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-    serviceProvider.getLocationServicesStatusWatcher().start { (locationServicesStatus) in
+    serviceProvider.getLocationServicesStatusWatcher().start { locationServicesStatus in
       events(locationServicesStatus.rawValue)
     }
     return nil

@@ -55,6 +55,7 @@ class LocationDataProvider: NSObject, CLLocationManagerDelegate {
       guard let locationJson = String(data: try jsonEncoder.encode(locationData), encoding: .utf8) else { return }
       handler?.onLocationUpdate(locationJson: locationJson)
     } catch {
+      NSLog("LocationData encoding error: \(error)")
       handler?.onLocationError(errorCode: ErrorCodes.LOCATION_DATA_ENCODING_FAILED)
     }
   }
@@ -62,7 +63,7 @@ class LocationDataProvider: NSObject, CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     if handler == nil { return }
     
-    NSLog("LOCATION_UPDATE_FAILED: \(error)")
+    NSLog("LocationManager error: \(error)")
     handler?.onLocationError(errorCode: ErrorCodes.LOCATION_UPDATE_FAILED)
   }
 }

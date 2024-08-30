@@ -25,8 +25,7 @@ class LocationServicesStatusStreamHandlerImpl(
 	}
 
 	override fun initChannel(messenger: BinaryMessenger) {
-		channel = EventChannel(messenger,
-				"plugins.pravera.com/fl_location/location_services_status")
+		channel = EventChannel(messenger, "fl_location/location_services_status")
 		channel.setStreamHandler(this)
 	}
 
@@ -35,7 +34,8 @@ class LocationServicesStatusStreamHandlerImpl(
 	}
 
 	override fun disposeChannel() {
-		if (::channel.isInitialized)
+		if (::channel.isInitialized) {
 			channel.setStreamHandler(null)
+		}
 	}
 }

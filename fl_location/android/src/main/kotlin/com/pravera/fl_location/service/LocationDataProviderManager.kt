@@ -40,6 +40,7 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 			}
 		}
 		newLocationDataProvider.requestLocationUpdates(newCallback, settings)
+
 		return hashCode
 	}
 
@@ -49,6 +50,7 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 		providers[hashCode] = newLocationDataProvider
 
 		newLocationDataProvider.requestLocationUpdates(callback, settings)
+
 		return hashCode
 	}
 

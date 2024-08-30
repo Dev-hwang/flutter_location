@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fl_location_platform_interface: ^4.0.0
-  fl_location_web: ^4.0.0
+  fl_location_platform_interface: ^5.0.0
+  fl_location_web: ^4.1.0
 
 dev_dependencies:
   flutter_test:

@@ -13,7 +13,7 @@ class MethodCallHandlerImpl: NSObject {
   private let serviceProvider: ServiceProvider
   
   init(messenger: FlutterBinaryMessenger, serviceProvider: ServiceProvider) {
-    self.channel = FlutterMethodChannel(name: "plugins.pravera.com/fl_location", binaryMessenger: messenger)
+    self.channel = FlutterMethodChannel(name: "fl_location/methods", binaryMessenger: messenger)
     self.serviceProvider = serviceProvider
     super.init()
     self.channel.setMethodCallHandler(onMethodCall)
@@ -21,8 +21,9 @@ class MethodCallHandlerImpl: NSObject {
   
   func onMethodCall(call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
-      case "checkLocationServicesStatus":
-        result(LocationServicesUtils.checkLocationServicesStatus().rawValue)
+      case "isLocationServicesEnabled":
+        let locationServicesStatus = LocationServicesUtils.checkLocationServicesStatus()
+        result(locationServicesStatus == LocationServicesStatus.ENABLED)
       case "checkLocationPermission":
         let handler = LocationPermissionHandlerImpl(result)
         serviceProvider.getLocationPermissionManager().checkLocationPermission(handler: handler)

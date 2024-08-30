@@ -11,10 +11,11 @@ class LocationServicesUtils {
 			val isGpsProviderEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 			val isNetProviderEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
-			return if (isGpsProviderEnabled || isNetProviderEnabled)
+			return if (isGpsProviderEnabled || isNetProviderEnabled) {
 				LocationServicesStatus.ENABLED
-			else
+			} else {
 				LocationServicesStatus.DISABLED
+			}
 		}
 	}
 }

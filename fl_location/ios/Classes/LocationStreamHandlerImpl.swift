@@ -17,7 +17,7 @@ class LocationStreamHandlerImpl: NSObject, FlutterStreamHandler, LocationDataHan
   
   init(messenger: FlutterBinaryMessenger, serviceProvider: ServiceProvider) {
     self.serviceProvider = serviceProvider
-    self.channel = FlutterEventChannel(name: "plugins.pravera.com/fl_location/updates", binaryMessenger: messenger)
+    self.channel = FlutterEventChannel(name: "fl_location/location", binaryMessenger: messenger)
     super.init()
     self.channel.setStreamHandler(self)
   }

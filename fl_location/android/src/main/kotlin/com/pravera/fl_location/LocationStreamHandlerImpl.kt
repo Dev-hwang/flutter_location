@@ -48,7 +48,7 @@ class LocationStreamHandlerImpl(
 	}
 
 	override fun initChannel(messenger: BinaryMessenger) {
-		channel = EventChannel(messenger, "plugins.pravera.com/fl_location/updates")
+		channel = EventChannel(messenger, "fl_location/location")
 		channel.setStreamHandler(this)
 	}
 

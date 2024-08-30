@@ -10,11 +10,11 @@ enum class ErrorCodes {
 	fun message(): String {
 		return when (this) {
 			ACTIVITY_NOT_ATTACHED ->
-				"The function to use Activity is not available because Activity is not attached to FlutterEngine."
+				"Cannot call method because Activity is not attached to FlutterEngine."
 			LOCATION_PERMISSION_REQUEST_CANCELLED ->
-				"The dialog was closed or the request was canceled during a runtime location permission request."
+				"The location permission request dialog was closed or the request was cancelled."
 			LOCATION_SETTINGS_CHANGE_FAILED ->
-				"The request to change location settings failed."
+				"Failed to change location settings."
 			LOCATION_SERVICES_NOT_AVAILABLE ->
 				"Location services are not available."
 			LOCATION_DATA_ENCODING_FAILED ->

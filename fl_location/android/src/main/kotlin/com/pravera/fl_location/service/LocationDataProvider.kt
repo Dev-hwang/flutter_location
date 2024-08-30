@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.IntentSender
 import android.os.Build
 import android.os.Looper
+import android.util.Log
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
@@ -15,6 +16,8 @@ import com.pravera.fl_location.models.LocationSettings
 
 class LocationDataProvider(private val context: Context) {
 	companion object {
+		private val TAG = LocationDataProvider::class.java.simpleName
+
 		private const val DEFAULT_LOCATION_INTERVAL = 5000L
 		private const val REQUEST_CHECK_SETTINGS = 0x1
 	}
@@ -104,8 +107,11 @@ class LocationDataProvider(private val context: Context) {
 							callback?.onError(ErrorCodes.LOCATION_SERVICES_NOT_AVAILABLE)
 						}
 					} else {
+						statusCode = -1
 						callback?.onError(ErrorCodes.LOCATION_SERVICES_NOT_AVAILABLE)
 					}
+
+					Log.e(TAG, "checkLocationSettings error: statusCode($statusCode), $it")
 				}
 	}
 
@@ -158,6 +164,7 @@ class LocationDataProvider(private val context: Context) {
 				try {
 					callback.onUpdate(jsonEncoder.toJson(locationData))
 				} catch (ex: Exception) {
+					Log.e(TAG, "LocationData encoding error: $ex")
 					callback.onError(ErrorCodes.LOCATION_DATA_ENCODING_FAILED)
 				}
 			}

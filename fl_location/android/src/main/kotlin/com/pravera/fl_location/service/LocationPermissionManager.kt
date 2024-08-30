@@ -23,27 +23,31 @@ class LocationPermissionManager: PluginRegistry.RequestPermissionsResultListener
 	private var callback: LocationPermissionCallback? = null
 
 	fun checkLocationPermission(activity: Activity): LocationPermission {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
 			return LocationPermission.ALWAYS
+		}
 
 		val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
 		if (!activity.isPermissionGranted(locationPermission)) {
 			val prevPermissionStatus = activity.getPrevPermissionStatus(locationPermission)
 			if (prevPermissionStatus != null &&
 					prevPermissionStatus == LocationPermission.DENIED_FOREVER &&
-					!activity.shouldShowRequestPermissionRationale(locationPermission))
+					!activity.shouldShowRequestPermissionRationale(locationPermission)) {
 				return LocationPermission.DENIED_FOREVER
+			}
 
 			return LocationPermission.DENIED
 		}
 
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 			return LocationPermission.ALWAYS
+		}
 
 		val backgroundLocationPermission = Manifest.permission.ACCESS_BACKGROUND_LOCATION
 		if (activity.hasPermissionInManifest(backgroundLocationPermission) &&
-				activity.isPermissionGranted(backgroundLocationPermission))
+				activity.isPermissionGranted(backgroundLocationPermission)) {
 			return LocationPermission.ALWAYS
+		}
 
 		return LocationPermission.WHILE_IN_USE
 	}
@@ -100,8 +104,8 @@ class LocationPermissionManager: PluginRegistry.RequestPermissionsResultListener
 	private fun Context.getPrevPermissionStatus(permission: String): LocationPermission? {
 		val prefs = getSharedPreferences(
 				PREV_PERMISSION_STATUS_PREFS_NAME, Context.MODE_PRIVATE) ?: return null
-
 		val value = prefs.getString(permission, null) ?: return null
+
 		return LocationPermission.valueOf(value)
 	}
 
@@ -129,13 +133,15 @@ class LocationPermissionManager: PluginRegistry.RequestPermissionsResultListener
 
 				if (permissionIndex >= 0 &&
 						grantResults[permissionIndex] == PackageManager.PERMISSION_GRANTED) {
-					permissionStatus = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+					permissionStatus = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 						LocationPermission.ALWAYS
-					else
+					} else {
 						LocationPermission.WHILE_IN_USE
+					}
 				} else {
-					if (activity?.shouldShowRequestPermissionRationale(permission) == false)
+					if (activity?.shouldShowRequestPermissionRationale(permission) == false) {
 						permissionStatus = LocationPermission.DENIED_FOREVER
+					}
 				}
 			}
 			BACKGROUND_LOCATION_PERMISSION_REQ_CODE -> {
@@ -143,10 +149,11 @@ class LocationPermissionManager: PluginRegistry.RequestPermissionsResultListener
 				permissionIndex = permissions.indexOf(permission)
 
 				permissionStatus = if (permissionIndex >= 0 &&
-						grantResults[permissionIndex] == PackageManager.PERMISSION_GRANTED)
+						grantResults[permissionIndex] == PackageManager.PERMISSION_GRANTED) {
 					LocationPermission.ALWAYS
-				else
+				} else {
 					LocationPermission.WHILE_IN_USE
+				}
 			}
 			else -> return false
 		}

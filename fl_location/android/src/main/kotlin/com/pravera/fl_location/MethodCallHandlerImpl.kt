@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import com.pravera.fl_location.errors.ErrorCodes
 import com.pravera.fl_location.models.LocationPermission
+import com.pravera.fl_location.models.LocationServicesStatus
 import com.pravera.fl_location.models.LocationSettings
 import com.pravera.fl_location.service.LocationDataCallback
 import com.pravera.fl_location.service.LocationPermissionCallback
@@ -34,14 +35,15 @@ class MethodCallHandlerImpl(
 		}
 
 		when (reqMethod) {
-			"checkLocationServicesStatus" -> {
-				val checkResult = LocationServicesUtils.checkLocationServicesStatus(context)
-				result.success(checkResult.ordinal)
+			"isLocationServicesEnabled" -> {
+				val locationServicesStatus =
+					LocationServicesUtils.checkLocationServicesStatus(context)
+				result.success(locationServicesStatus == LocationServicesStatus.ENABLED)
 			}
 			"checkLocationPermission" -> {
-				val checkResult = serviceProvider.getLocationPermissionManager()
+				val locationPermission = serviceProvider.getLocationPermissionManager()
 						.checkLocationPermission(activity!!)
-				result.success(checkResult.ordinal)
+				result.success(locationPermission.ordinal)
 			}
 			"requestLocationPermission" -> {
 				val callback = object : LocationPermissionCallback {
@@ -82,7 +84,7 @@ class MethodCallHandlerImpl(
 	}
 
 	override fun initChannel(messenger: BinaryMessenger) {
-		channel = MethodChannel(messenger, "plugins.pravera.com/fl_location")
+		channel = MethodChannel(messenger, "fl_location/methods")
 		channel.setMethodCallHandler(this)
 	}
 

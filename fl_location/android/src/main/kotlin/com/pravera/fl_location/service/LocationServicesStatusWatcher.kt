@@ -16,7 +16,9 @@ class LocationServicesStatusWatcher: SharedPreferences.OnSharedPreferenceChangeL
 	private var broadcastReceiver: LocationServicesStatusReceiver? = null
 
 	fun start(context: Context, onChanged: ((LocationServicesStatus) -> Unit)) {
-		if (this.onChangedCallback != null) stop(context)
+		if (this.onChangedCallback != null) {
+			stop(context)
+		}
 
 		this.onChangedCallback = onChanged
 		context.registerSharedPreferenceChangeListener()

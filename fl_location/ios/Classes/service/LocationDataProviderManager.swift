@@ -22,8 +22,8 @@ class LocationDataProviderManager: NSObject {
     let newHandler = LocationDataHandlerImplForManager(handler) {
       self.stopUpdatingLocation(hashCode: hashCode)
     }
-    
     newLocationDataProvider.startUpdatingLocation(handler: newHandler, settings: settings)
+    
     return hashCode
   }
   
@@ -33,12 +33,12 @@ class LocationDataProviderManager: NSObject {
     providers[hashCode] = newLocationDataProvider
     
     newLocationDataProvider.startUpdatingLocation(handler: handler, settings: settings)
+    
     return hashCode
   }
   
   func stopUpdatingLocation(hashCode: Int) {
     guard let locationDataProvider = providers[hashCode] else { return }
-    
     locationDataProvider.stopUpdatingLocation()
     providers.removeValue(forKey: hashCode)
   }
