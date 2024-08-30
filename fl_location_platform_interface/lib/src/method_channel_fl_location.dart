@@ -3,25 +3,24 @@ part of fl_location_platform_interface;
 /// The [FlLocationPlatform] implementation that delegates to a [MethodChannel].
 class MethodChannelFlLocation extends FlLocationPlatform {
   /// The method channel used to invoke methods implemented on the platform.
-  static const MethodChannel methodChannel =
-      MethodChannel('plugins.pravera.com/fl_location');
+  @visibleForTesting
+  final methodChannel = const MethodChannel('fl_location/methods');
 
   /// The event channel used to receive location updates from the platform.
-  static const EventChannel locationEventChannel =
-      EventChannel('plugins.pravera.com/fl_location/updates');
+  @visibleForTesting
+  final locationEventChannel = const EventChannel('fl_location/location');
 
   /// The event channel used to receive location services status updates from the platform.
-  static const EventChannel locationServicesStatusEventChannel =
-      EventChannel('plugins.pravera.com/fl_location/location_services_status');
+  @visibleForTesting
+  final locationServicesStatusEventChannel =
+      const EventChannel('fl_location/location_services_status');
 
   Stream<Location>? _locationStream;
   Stream<LocationServicesStatus>? _locationServicesStatusStream;
 
   @override
   Future<bool> isLocationServicesEnabled() async {
-    final int result =
-        await methodChannel.invokeMethod('checkLocationServicesStatus');
-    return result == LocationServicesStatus.enabled.index;
+    return await methodChannel.invokeMethod('isLocationServicesEnabled');
   }
 
   @override
@@ -43,14 +42,16 @@ class MethodChannelFlLocation extends FlLocationPlatform {
     LocationAccuracy accuracy = LocationAccuracy.best,
     Duration? timeLimit,
   }) async {
-    final locationSettings = Map<String, dynamic>();
-    locationSettings['accuracy'] = accuracy.index;
+    final Map<String, dynamic> settings = {
+      'accuracy': accuracy.index,
+    };
 
-    final locationJson = timeLimit == null
-        ? await methodChannel.invokeMethod('getLocation', locationSettings)
+    final String locationJson = (timeLimit == null)
+        ? await methodChannel.invokeMethod('getLocation', settings)
         : await methodChannel
-            .invokeMethod('getLocation', locationSettings)
+            .invokeMethod('getLocation', settings)
             .timeout(timeLimit);
+
     return Location.fromJson(jsonDecode(locationJson));
   }
 
@@ -60,13 +61,14 @@ class MethodChannelFlLocation extends FlLocationPlatform {
     int interval = 5000,
     double distanceFilter = 0.0,
   }) {
-    final locationSettings = Map<String, dynamic>();
-    locationSettings['accuracy'] = accuracy.index;
-    locationSettings['interval'] = interval;
-    locationSettings['distanceFilter'] = distanceFilter;
+    final Map<String, dynamic> settings = {
+      'accuracy': accuracy.index,
+      'interval': interval,
+      'distanceFilter': distanceFilter,
+    };
 
     return _locationStream ??= locationEventChannel
-        .receiveBroadcastStream(locationSettings)
+        .receiveBroadcastStream(settings)
         .map((event) => Location.fromJson(jsonDecode(event)));
   }
 
