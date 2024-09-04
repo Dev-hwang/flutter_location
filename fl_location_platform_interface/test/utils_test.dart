@@ -22,7 +22,6 @@ void main() {
       latLngB.dx,
       latLngB.dy,
     );
-
     expect(bearing, 15.259902697661822);
   });
 }

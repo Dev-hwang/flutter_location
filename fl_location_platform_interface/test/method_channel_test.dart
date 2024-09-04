@@ -4,7 +4,7 @@ import 'package:fl_location_platform_interface/fl_location_platform_interface.da
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'location_dummy.dart';
+import 'dummy/location_dummy.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:fl_location_platform_interface/fl_location_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'location_dummy.dart';
+import 'dummy/location_dummy.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

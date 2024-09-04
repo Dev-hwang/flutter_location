@@ -1,8 +1,7 @@
 import 'package:fl_location_platform_interface/fl_location_platform_interface.dart';
-import 'package:fl_location_platform_interface/src/models/location_accuracy.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'location_dummy.dart';
+import 'dummy/location_dummy.dart';
 
 void main() {
   group('location', () {
@@ -76,11 +75,17 @@ void main() {
   group('location_services_status', () {
     test('fromIndex test', () {
       expect(
-          LocationServicesStatus.fromIndex(0), LocationServicesStatus.enabled);
+        LocationServicesStatus.fromIndex(0),
+        LocationServicesStatus.enabled,
+      );
       expect(
-          LocationServicesStatus.fromIndex(1), LocationServicesStatus.disabled);
-      expect(LocationServicesStatus.fromIndex(null),
-          LocationServicesStatus.disabled);
+        LocationServicesStatus.fromIndex(1),
+        LocationServicesStatus.disabled,
+      );
+      expect(
+        LocationServicesStatus.fromIndex(null),
+        LocationServicesStatus.disabled,
+      );
     });
   });
 }
