@@ -76,15 +76,15 @@ Future<bool> _checkAndRequestPermission({bool? background}) async {
     return false;
   }
 
-  var locationPermission = await FlLocation.checkLocationPermission();
-  if (locationPermission == LocationPermission.deniedForever) {
+  LocationPermission permission = await FlLocation.checkLocationPermission();
+  if (permission == LocationPermission.deniedForever) {
     // Location permission has been permanently denied.
     return false;
-  } else if (locationPermission == LocationPermission.denied) {
+  } else if (permission == LocationPermission.denied) {
     // Ask the user for location permission.
-    locationPermission = await FlLocation.requestLocationPermission();
-    if (locationPermission == LocationPermission.denied ||
-        locationPermission == LocationPermission.deniedForever) {
+    permission = await FlLocation.requestLocationPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
       // Location permission has been denied.
       return false;
     }
@@ -92,8 +92,7 @@ Future<bool> _checkAndRequestPermission({bool? background}) async {
 
   // Location permission must always be granted (LocationPermission.always)
   // to collect location data in the background.
-  if (background == true &&
-      locationPermission == LocationPermission.whileInUse) {
+  if (background == true && permission == LocationPermission.whileInUse) {
     // Location permission must always be granted to collect location in the background.
     return false;
   }
@@ -107,12 +106,8 @@ Future<bool> _checkAndRequestPermission({bool? background}) async {
 ```dart
 Future<void> _getLocation() async {
   if (await _checkAndRequestPermission()) {
-    final Duration timeLimit = const Duration(seconds: 10);
-    await FlLocation.getLocation(timeLimit: timeLimit).then((location) {
-      print('location: ${location.toJson().toString()}');
-    }).onError((error, _) {
-      print('error: ${error.toString()}');
-    });
+    final Location location = await FlLocation.getLocation();
+    print('location: ${location.toJson()}');
   }
 }
 ```
@@ -124,27 +119,12 @@ StreamSubscription<Location>? _locationSubscription;
 
 Future<void> _subscribeLocationStream() async {
   if (await _checkAndRequestPermission()) {
-    if (_locationSubscription != null) {
-      await _unsubscribeLocationStream();
-    }
-
-    _locationSubscription = FlLocation.getLocationStream()
-        .handleError(_handleError)
-        .listen(_onLocationDetected);
+    _locationSubscription = FlLocation.getLocationStream().listen(_onLocation);
   }
 }
 
-Future<void> _unsubscribeLocationStream() async {
-  await _locationSubscription?.cancel();
-  _locationSubscription = null;
-}
-
-void _onLocationDetected(Location location) {
-  print('location: ${event.toJson().toString()}');
-}
-
-void _handleError(dynamic error) {
-  print('error: ${error.toString()}');
+void _onLocation(Location location) {
+  print('location: ${location.toJson()}');
 }
 ```
 
@@ -154,19 +134,12 @@ void _handleError(dynamic error) {
 StreamSubscription<LocationServicesStatus>? _locationServicesStatusSubscription;
 
 Future<void> _subscribeLocationServicesStatusStream() async {
-  if (_locationServicesStatusSubscription != null) {
-    await _unsubscribeLocationServicesStatusStream();
-  }
-
-  _locationServicesStatusSubscription =
-      FlLocation.getLocationServicesStatusStream().listen((event) {
-    print('LocationServicesStatus: $event');
-  });
+  _locationServicesStatusSubscription = FlLocation.getLocationServicesStatusStream()
+      .listen(_onLocationServicesStatus);
 }
 
-Future<void> _unsubscribeLocationServicesStatusStream() async {
-  await _locationServicesStatusSubscription?.cancel();
-  _locationServicesStatusSubscription = null;
+void _onLocationServicesStatus(LocationServicesStatus status) {
+  print('LocationServicesStatus: $status');
 }
 ```
 

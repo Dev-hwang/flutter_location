@@ -27,15 +27,15 @@ class _ExampleAppState extends State<ExampleApp> {
       return false;
     }
 
-    var locationPermission = await FlLocation.checkLocationPermission();
-    if (locationPermission == LocationPermission.deniedForever) {
+    LocationPermission permission = await FlLocation.checkLocationPermission();
+    if (permission == LocationPermission.deniedForever) {
       _resultText.value = 'Location permission has been permanently denied.';
       return false;
-    } else if (locationPermission == LocationPermission.denied) {
+    } else if (permission == LocationPermission.denied) {
       // Ask the user for location permission.
-      locationPermission = await FlLocation.requestLocationPermission();
-      if (locationPermission == LocationPermission.denied ||
-          locationPermission == LocationPermission.deniedForever) {
+      permission = await FlLocation.requestLocationPermission();
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
         _resultText.value = 'Location permission has been denied.';
         return false;
       }
@@ -43,8 +43,7 @@ class _ExampleAppState extends State<ExampleApp> {
 
     // Location permission must always be granted (LocationPermission.always)
     // to collect location data in the background.
-    if (background == true &&
-        locationPermission == LocationPermission.whileInUse) {
+    if (background == true && permission == LocationPermission.whileInUse) {
       _resultText.value =
           'Location permission must always be granted to collect location in the background.';
       return false;
@@ -60,9 +59,9 @@ class _ExampleAppState extends State<ExampleApp> {
 
       final Duration timeLimit = const Duration(seconds: 10);
       await FlLocation.getLocation(timeLimit: timeLimit).then((location) {
-        _onLocationDetected(location);
-      }).onError((error, _) {
-        _handleError(error);
+        _onLocation(location);
+      }).onError((error, stackTrace) {
+        _onError(error);
       }).whenComplete(() {
         _getLocationButtonState.value = ButtonState.DONE;
         _subscribeLocationStreamButtonState.value = ButtonState.DONE;
@@ -77,8 +76,8 @@ class _ExampleAppState extends State<ExampleApp> {
       }
 
       _locationSubscription = FlLocation.getLocationStream()
-          .handleError(_handleError)
-          .listen(_onLocationDetected);
+          .handleError(_onError)
+          .listen(_onLocation);
 
       _getLocationButtonState.value = ButtonState.DISABLED;
       _isSubscribeLocationStream.value = true;
@@ -93,11 +92,15 @@ class _ExampleAppState extends State<ExampleApp> {
     _isSubscribeLocationStream.value = false;
   }
 
-  void _onLocationDetected(Location location) {
+  void _onLocation(Location location) {
     _resultText.value = location.toJson().toString();
   }
 
-  void _handleError(dynamic error) {
+  void _onLocationServicesStatus(LocationServicesStatus status) {
+    print('LocationServicesStatus: $status');
+  }
+
+  void _onError(dynamic error) {
     _resultText.value = error.toString();
   }
 
@@ -106,9 +109,8 @@ class _ExampleAppState extends State<ExampleApp> {
     super.initState();
     // The getLocationServicesStatusStream function is not available on Web.
     if (!kIsWeb) {
-      FlLocation.getLocationServicesStatusStream().listen((event) {
-        print('LocationServicesStatus: $event');
-      });
+      FlLocation.getLocationServicesStatusStream()
+          .listen(_onLocationServicesStatus);
     }
   }
 
