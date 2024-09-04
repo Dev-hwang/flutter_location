@@ -1,3 +1,8 @@
+## 4.1.0+1
+
+* [**DOCS**] Update example
+* [**DOCS**] Update readme
+
 ## 4.1.0
 
 * [**CHORE**] Upgrade dependencies
