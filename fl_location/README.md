@@ -172,61 +172,17 @@ Future<void> _unsubscribeLocationServicesStatusStream() async {
 
 ## Background Mode
 
-If you want to use this plugin in the background, try the [`flutter_foreground_task`](https://pub.dev/packages/flutter_foreground_task) plugin.
+If you want to use this plugin in the background, use the [`flutter_foreground_task`](https://pub.dev/packages/flutter_foreground_task) plugin.
 
 demo: https://github.com/Dev-hwang/flutter_foreground_task_example/tree/main/location_service
 
-## Models
+## More Documentation
 
-### :chicken: Location
+Go [here](./documentation/models_documentation.md) to learn about the `models` provided by this plugin.
 
-A data class that represents a location model.
+Go [here](./documentation/utility_documentation.md) to learn about the `utility` provided by this plugin.
 
-| Field                    | Description                                                       |
-|--------------------------|-------------------------------------------------------------------|
-| `latitude`               | The latitude of the location.                                     |
-| `longitude`              | The longitude of the location.                                    |
-| `accuracy`               | The accuracy of the location.                                     |
-| `altitude`               | The altitude of the location.                                     |
-| `heading`                | The angle in the direction the device is moving.                  |
-| `speed`                  | The movement speed of the device.                                 |
-| `speedAccuracy`          | The accuracy of `speed`.                                          |
-| `millisecondsSinceEpoch` | The millisecondsSinceEpoch at which the location update occurred. |
-| `timestamp`              | The device time at which the location update occurred.            |
-| `isMock`                 | Whether the mock location.                                        |
-
-### :chicken: LocationAccuracy
-
-An enumeration of location accuracy.
-
-| Value        | Description                                                                           |
-|--------------|---------------------------------------------------------------------------------------|
-| `powerSave`  | The location has an accuracy of 10km on Android and 3km on iOS.                       |
-| `low`        | The location has an accuracy of 10km on Android and 1km on iOS.                       |
-| `balanced`   | The location has an accuracy of 100m for both Android and iOS.                        |
-| `high`       | The location has an accuracy of ~100m on Android and 10m on iOS.                      |
-| `best`       | The location has an accuracy of ~100m on Android and ~10m on iOS.                     |
-| `navigation` | The location has an accuracy of ~100m on Android and optimized for navigation on iOS. |
-
-### :chicken: LocationPermission
-
-An enumeration of location permission.
-
-| Value           | Description                                                                                                                                      |
-|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| `always`        | The app can read location at any time. The app need this permission to read location in the background.                                          |
-| `whileInUse`    | The location can only be read while using the app.                                                                                               |
-| `denied`        | The location cannot be read because permission is denied. The app can request runtime permissions again.                                         |
-| `deniedForever` | The location cannot be read because permission is denied. The app can no longer request runtime permissions and must grant permissions manually. |
-
-### :chicken: LocationServicesStatus
-
-An enumeration of location services status.
-
-| Value      | Description                     |
-|------------|---------------------------------|
-| `enabled`  | Location services are enabled.  |
-| `disabled` | Location services are disabled. |
+Go [here](./documentation/migration_documentation.md) to `migrate` to the new version.
 
 ## Support
 
