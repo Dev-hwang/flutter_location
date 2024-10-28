@@ -22,7 +22,7 @@ To use this plugin, add `fl_location` as a [dependency in your pubspec.yaml file
 
 ```yaml
 dependencies:
-  fl_location: ^4.1.0+1
+  fl_location: ^4.3.0
 ```
 
 After adding the `fl_location` plugin to the flutter project, we need to specify the platform-specific permissions for this plugin to work properly.

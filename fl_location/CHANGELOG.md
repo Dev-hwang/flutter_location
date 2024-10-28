@@ -1,3 +1,8 @@
+## 4.3.0
+
+* [**FEAT**] Allow use of checkLocationPermission in the background
+* [**FEAT**] Allow ACCESS_COARSE_LOCATION permission
+
 ## 4.1.0+1
 
 * [**DOCS**] Update example
