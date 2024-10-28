@@ -32,8 +32,8 @@ After adding the `fl_location` plugin to the flutter project, we need to specify
 Since this plugin works based on location, we need to add the following permission to the `AndroidManifest.xml` file. Open the `AndroidManifest.xml` file and specify it between the `<manifest>` and `<application>` tags.
 
 ```
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 If you want to get the location in the background, add the following permission. If your project supports Android 10, be sure to add the `ACCESS_BACKGROUND_LOCATION` permission.
@@ -107,7 +107,7 @@ Future<bool> _checkAndRequestPermission({bool? background}) async {
 Future<void> _getLocation() async {
   if (await _checkAndRequestPermission()) {
     final Location location = await FlLocation.getLocation();
-    print('location: ${location.toJson()}');
+    print('Location: ${location.toJson()}');
   }
 }
 ```
@@ -124,7 +124,7 @@ Future<void> _subscribeLocationStream() async {
 }
 
 void _onLocation(Location location) {
-  print('location: ${location.toJson()}');
+  print('Location: ${location.toJson()}');
 }
 ```
 

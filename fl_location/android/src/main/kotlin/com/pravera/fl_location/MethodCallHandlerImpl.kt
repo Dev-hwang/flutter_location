@@ -34,7 +34,7 @@ class MethodCallHandlerImpl(
 			"checkLocationPermission" -> {
 				val locationPermission = serviceProvider
 					.getLocationPermissionManager()
-					.checkLocationPermission(context)
+					.checkLocationPermission()
 				result.success(locationPermission.ordinal)
 			}
 			"requestLocationPermission" -> {

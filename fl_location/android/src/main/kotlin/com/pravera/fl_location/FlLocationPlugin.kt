@@ -20,7 +20,7 @@ class FlLocationPlugin: FlutterPlugin, ActivityAware, ServiceProvider {
     val applicationContext = binding.applicationContext
     val binaryMessenger = binding.binaryMessenger
 
-    locationPermissionManager = LocationPermissionManager()
+    locationPermissionManager = LocationPermissionManager(applicationContext)
     locationDataProviderManager = LocationDataProviderManager(applicationContext)
     locationServicesStatusWatcher = LocationServicesStatusWatcher()
 
