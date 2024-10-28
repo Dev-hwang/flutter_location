@@ -25,27 +25,25 @@ class MethodCallHandlerImpl(
 	private var activity: Activity? = null
 
 	override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
-		val reqMethod = call.method
-		if (reqMethod.contains("checkLocationPermission") ||
-				reqMethod.contains("requestLocationPermission")) {
-			if (activity == null) {
-				ErrorHandleUtils.handleMethodCallError(result, ErrorCodes.ACTIVITY_NOT_ATTACHED)
-				return
-			}
-		}
-
-		when (reqMethod) {
+		when (call.method) {
 			"isLocationServicesEnabled" -> {
 				val locationServicesStatus =
 					LocationServicesUtils.checkLocationServicesStatus(context)
 				result.success(locationServicesStatus == LocationServicesStatus.ENABLED)
 			}
 			"checkLocationPermission" -> {
-				val locationPermission = serviceProvider.getLocationPermissionManager()
-						.checkLocationPermission(activity!!)
+				val locationPermission = serviceProvider
+					.getLocationPermissionManager()
+					.checkLocationPermission(context)
 				result.success(locationPermission.ordinal)
 			}
 			"requestLocationPermission" -> {
+				val currentActivity = activity
+				if (currentActivity == null) {
+					ErrorHandleUtils.handleMethodCallError(result, ErrorCodes.ACTIVITY_NOT_ATTACHED)
+					return
+				}
+
 				val callback = object : LocationPermissionCallback {
 					override fun onResult(locationPermission: LocationPermission) {
 						result.success(locationPermission.ordinal)
@@ -56,28 +54,27 @@ class MethodCallHandlerImpl(
 					}
 				}
 
-				serviceProvider.getLocationPermissionManager()
-						.requestLocationPermission(activity!!, callback)
+				serviceProvider
+					.getLocationPermissionManager()
+					.requestLocationPermission(currentActivity, callback)
 			}
 			"getLocation" -> {
 				val callback = object : LocationDataCallback {
 					override fun onUpdate(locationJson: String) {
-						// 매니저에서 stopLocationUpdates 처리
 						result.success(locationJson)
 					}
 
 					override fun onError(errorCode: ErrorCodes) {
-						// 매니저에서 stopLocationUpdates 처리
 						ErrorHandleUtils.handleMethodCallError(result, errorCode)
 					}
 				}
 
-				val argsMap = call.arguments as? Map<*, *>
-				val settings = LocationSettings.fromMap(argsMap)
+				val settingsMap = call.arguments as? Map<*, *>
+				val settings = LocationSettings.fromMap(settingsMap)
 
 				serviceProvider
-						.getLocationDataProviderManager()
-						.getLocation(callback, settings)
+					.getLocationDataProviderManager()
+					.getLocation(callback, settings)
 			}
 			else -> result.notImplemented()
 		}

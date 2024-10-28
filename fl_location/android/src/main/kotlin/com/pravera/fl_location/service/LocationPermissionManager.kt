@@ -22,17 +22,15 @@ class LocationPermissionManager: PluginRegistry.RequestPermissionsResultListener
 	private var activity: Activity? = null
 	private var callback: LocationPermissionCallback? = null
 
-	fun checkLocationPermission(activity: Activity): LocationPermission {
+	fun checkLocationPermission(context: Context): LocationPermission {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
 			return LocationPermission.ALWAYS
 		}
 
 		val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
-		if (!activity.isPermissionGranted(locationPermission)) {
-			val prevPermissionStatus = activity.getPrevPermissionStatus(locationPermission)
-			if (prevPermissionStatus != null &&
-					prevPermissionStatus == LocationPermission.DENIED_FOREVER &&
-					!activity.shouldShowRequestPermissionRationale(locationPermission)) {
+		if (!context.isPermissionGranted(locationPermission)) {
+			val prevPermissionStatus = context.getPrevPermissionStatus(locationPermission)
+			if (prevPermissionStatus == LocationPermission.DENIED_FOREVER) {
 				return LocationPermission.DENIED_FOREVER
 			}
 
@@ -44,8 +42,8 @@ class LocationPermissionManager: PluginRegistry.RequestPermissionsResultListener
 		}
 
 		val backgroundLocationPermission = Manifest.permission.ACCESS_BACKGROUND_LOCATION
-		if (activity.hasPermissionInManifest(backgroundLocationPermission) &&
-				activity.isPermissionGranted(backgroundLocationPermission)) {
+		if (context.hasPermissionInManifest(backgroundLocationPermission) &&
+			context.isPermissionGranted(backgroundLocationPermission)) {
 			return LocationPermission.ALWAYS
 		}
 
