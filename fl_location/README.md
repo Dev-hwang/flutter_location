@@ -70,31 +70,40 @@ If you want to get the location in the background, add the following description
 1. Check whether the location permission is granted or not, and if not granted, request the location permission.
 
 ```dart
-Future<bool> _checkAndRequestPermission({bool? background}) async {
+Future<bool> _requestLocationPermission({bool background = false}) async {
   if (!await FlLocation.isLocationServicesEnabled) {
     // Location services is disabled.
     return false;
   }
 
   LocationPermission permission = await FlLocation.checkLocationPermission();
-  if (permission == LocationPermission.deniedForever) {
-    // Location permission has been permanently denied.
-    return false;
-  } else if (permission == LocationPermission.denied) {
-    // Ask the user for location permission.
+  if (permission == LocationPermission.denied) {
+    // Android: ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION
+    // iOS 12-: NSLocationWhenInUseUsageDescription or NSLocationAlwaysAndWhenInUseUsageDescription
+    // iOS 13+: NSLocationWhenInUseUsageDescription
     permission = await FlLocation.requestLocationPermission();
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
-      // Location permission has been denied.
-      return false;
-    }
+  }
+
+  if (permission == LocationPermission.denied ||
+      permission == LocationPermission.deniedForever) {
+    // Location permission has been ${permission.name}.
+    return false;
   }
 
   // Location permission must always be granted (LocationPermission.always)
   // to collect location data in the background.
-  if (background == true && permission == LocationPermission.whileInUse) {
-    // Location permission must always be granted to collect location in the background.
-    return false;
+  if (Platform.isAndroid &&
+      background &&
+      permission == LocationPermission.whileInUse) {
+    // You need a clear explanation of why your app's feature needs access to background location.
+
+    // Android: ACCESS_BACKGROUND_LOCATION
+    permission = await FlLocation.requestLocationPermission();
+
+    if (permission != LocationPermission.always) {
+      // Location permission must always be granted to collect location in the background.
+      return false;
+    }
   }
 
   return true;
@@ -105,7 +114,7 @@ Future<bool> _checkAndRequestPermission({bool? background}) async {
 
 ```dart
 Future<void> _getLocation() async {
-  if (await _checkAndRequestPermission()) {
+  if (await _requestLocationPermission()) {
     final Location location = await FlLocation.getLocation();
     print('Location: ${location.toJson()}');
   }
@@ -118,7 +127,7 @@ Future<void> _getLocation() async {
 StreamSubscription<Location>? _locationSubscription;
 
 Future<void> _subscribeLocationStream() async {
-  if (await _checkAndRequestPermission()) {
+  if (await _requestLocationPermission()) {
     _locationSubscription = FlLocation.getLocationStream().listen(_onLocation);
   }
 }

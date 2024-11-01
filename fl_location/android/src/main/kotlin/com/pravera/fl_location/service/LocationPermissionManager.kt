@@ -38,8 +38,8 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 
 		val locationPermission = getLocationPermission()
 		if (!isPermissionGranted(locationPermission)) {
-			val prevPermissionStatus = getPrevPermissionStatus(locationPermission)
-			if (prevPermissionStatus == LocationPermission.DENIED_FOREVER) {
+			val prevLocationPermission = getPrevPermissionStatus(locationPermission)
+			if (prevLocationPermission == LocationPermission.DENIED_FOREVER) {
 				return LocationPermission.DENIED_FOREVER
 			}
 
@@ -50,9 +50,7 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 			return LocationPermission.ALWAYS
 		}
 
-		val backgroundLocationPermission = Manifest.permission.ACCESS_BACKGROUND_LOCATION
-		if (hasPermissionInManifest(backgroundLocationPermission) &&
-			isPermissionGranted(backgroundLocationPermission)) {
+		if (isPermissionGranted(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
 			return LocationPermission.ALWAYS
 		}
 
@@ -65,7 +63,7 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 			return
 		}
 
-		// The app has already requested location permission and is awaiting results.
+		// The app has already requested location permission and is waiting for the result.
 		if (this.callback != null) {
 			callback.onError(ErrorCodes.LOCATION_PERMISSION_REQUEST_CANCELLED)
 			return
@@ -74,22 +72,22 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 		this.activity = activity
 		this.callback = callback
 
-		ActivityCompat.requestPermissions(
-				activity,
-				arrayOf(getLocationPermission()),
-				LOCATION_PERMISSION_REQ_CODE)
-	}
-
-	private fun requestBackgroundLocationPermission(activity: Activity) {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			// LocationPermission.ALWAYS
-			return
-		}
-
-		ActivityCompat.requestPermissions(
-				activity,
-				arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
-				BACKGROUND_LOCATION_PERMISSION_REQ_CODE)
+		val locationPermission = getLocationPermission()
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+            && isPermissionGranted(locationPermission)
+            && hasPermissionInManifest(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+            // request background location permission
+            ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                BACKGROUND_LOCATION_PERMISSION_REQ_CODE)
+		} else {
+            // request location permission
+            ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(locationPermission),
+                LOCATION_PERMISSION_REQ_CODE)
+        }
 	}
 
 	private fun hasPermissionInManifest(permission: String): Boolean {
@@ -129,7 +127,7 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 
 	@SuppressLint("InlinedApi")
 	override fun onRequestPermissionsResult(
-		requestCode: Int, permissions: Array<out String>, grantResults: IntArray): Boolean {
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray): Boolean {
 		val currentActivity = this.activity ?: return false
 		val currentCallback = this.callback ?: return false
 
@@ -141,14 +139,14 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 
 		val permission: String
 		val permissionIndex: Int
-		val permissionStatus: LocationPermission
+		val permissionResult: LocationPermission
 
 		when (requestCode) {
 			LOCATION_PERMISSION_REQ_CODE -> {
 				permission = getLocationPermission()
 				permissionIndex = permissions.indexOf(permission)
 
-				permissionStatus = if (permissionIndex >= 0 &&
+				permissionResult = if (permissionIndex >= 0 &&
 					grantResults[permissionIndex] == PackageManager.PERMISSION_GRANTED) {
 					if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 						LocationPermission.ALWAYS
@@ -168,7 +166,7 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 				permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION
 				permissionIndex = permissions.indexOf(permission)
 
-				permissionStatus = if (permissionIndex >= 0 &&
+				permissionResult = if (permissionIndex >= 0 &&
 					grantResults[permissionIndex] == PackageManager.PERMISSION_GRANTED) {
 					LocationPermission.ALWAYS
 				} else {
@@ -178,18 +176,10 @@ class LocationPermissionManager(private val context: Context) : PluginRegistry.R
 			else -> return false
 		}
 
-		setPrevPermissionStatus(permission, permissionStatus)
+        setPrevPermissionStatus(permission, permissionResult)
+        currentCallback.onResult(permissionResult)
+        disposeResources()
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
-			hasPermissionInManifest(Manifest.permission.ACCESS_BACKGROUND_LOCATION) &&
-			permission == getLocationPermission() &&
-			permissionStatus == LocationPermission.WHILE_IN_USE) {
-			requestBackgroundLocationPermission(currentActivity)
-		} else {
-			currentCallback.onResult(permissionStatus)
-			disposeResources()
-		}
-
-		return true
-	}
+        return true
+    }
 }

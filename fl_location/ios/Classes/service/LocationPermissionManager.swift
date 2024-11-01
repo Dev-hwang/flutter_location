@@ -26,8 +26,11 @@ class LocationPermissionManager: NSObject, CLLocationManagerDelegate {
   }
   
   func requestLocationPermission(handler: LocationPermissionHandler) {
-    // The app has already requested location permission and is awaiting results.
-    if self.handler != nil { return }
+    // The app has already requested location permission and is waiting for the result.
+    if self.handler != nil {
+      handler.onPermissionError(errorCode: ErrorCodes.LOCATION_PERMISSION_REQUEST_CANCELLED)
+      return
+    }
     
     self.handler = handler
     
