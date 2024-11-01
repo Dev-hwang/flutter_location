@@ -1,3 +1,9 @@
+## 4.4.0
+
+* [**CHANGE**] Change the behavior of requestLocationPermission [#21](https://github.com/Dev-hwang/flutter_location/issues/21)
+  - Allow incremental location permission requests
+  - Check [How to use-1](https://pub.dev/packages/fl_location#how-to-use) for more details
+
 ## 4.3.0
 
 * [**FEAT**] Allow use of checkLocationPermission in the background
