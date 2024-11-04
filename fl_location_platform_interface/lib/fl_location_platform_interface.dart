@@ -1,7 +1,5 @@
 library fl_location_platform_interface;
 
-import 'dart:convert';
-
 import 'package:fl_location_platform_interface/src/models/location.dart';
 import 'package:fl_location_platform_interface/src/models/location_accuracy.dart';
 import 'package:fl_location_platform_interface/src/models/location_permission.dart';

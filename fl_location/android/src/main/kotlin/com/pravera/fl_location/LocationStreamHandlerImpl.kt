@@ -3,6 +3,7 @@ package com.pravera.fl_location
 import android.app.Activity
 import android.content.Context
 import com.pravera.fl_location.errors.ErrorCodes
+import com.pravera.fl_location.models.LocationData
 import com.pravera.fl_location.models.LocationSettings
 import com.pravera.fl_location.service.LocationDataCallback
 import com.pravera.fl_location.service.ServiceProvider
@@ -22,8 +23,8 @@ class LocationStreamHandlerImpl(
 
 	override fun onListen(arguments: Any?, events: EventChannel.EventSink) {
 		val callback = object : LocationDataCallback {
-			override fun onUpdate(locationJson: String) {
-				events.success(locationJson)
+			override fun onUpdate(locationData: LocationData) {
+				events.success(locationData.toJson())
 			}
 
 			override fun onError(errorCode: ErrorCodes) {

@@ -46,20 +46,15 @@ class Location {
 
   /// Constructs an instance of [Location] from [json].
   factory Location.fromJson(Map<String, dynamic> json) {
-    final double? lat = double.tryParse(json['latitude'].toString());
-    final double? lon = double.tryParse(json['longitude'].toString());
-    if (lat == null) throw ArgumentError.notNull('latitude');
-    if (lon == null) throw ArgumentError.notNull('longitude');
+    final double latitude = json['latitude'] as double? ?? 0;
+    final double longitude = json['longitude'] as double? ?? 0;
+    final double accuracy = json['accuracy'] as double? ?? 0;
+    final double altitude = json['altitude'] as double? ?? 0;
+    final double heading = json['heading'] as double? ?? 0;
+    final double speed = json['speed'] as double? ?? 0;
+    final double speedAccuracy = json['speedAccuracy'] as double? ?? 0;
 
-    final double accuracy = double.tryParse(json['accuracy'].toString()) ?? 0;
-    final double altitude = double.tryParse(json['altitude'].toString()) ?? 0;
-    final double heading = double.tryParse(json['heading'].toString()) ?? 0;
-    final double speed = double.tryParse(json['speed'].toString()) ?? 0;
-    final double speedAccuracy =
-        double.tryParse(json['speedAccuracy'].toString()) ?? 0;
-
-    double? millisecondsSinceEpoch =
-        double.tryParse(json['millisecondsSinceEpoch'].toString());
+    double? millisecondsSinceEpoch = json['millisecondsSinceEpoch'] as double?;
     if (millisecondsSinceEpoch == null) {
       millisecondsSinceEpoch =
           DateTime.timestamp().millisecondsSinceEpoch.toDouble();
@@ -71,8 +66,8 @@ class Location {
     final bool isMock = json['isMock'] ?? false;
 
     return Location(
-      latitude: lat,
-      longitude: lon,
+      latitude: latitude,
+      longitude: longitude,
       accuracy: accuracy,
       altitude: altitude,
       heading: heading,

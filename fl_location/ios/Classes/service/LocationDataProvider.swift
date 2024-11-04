@@ -9,14 +9,12 @@ import CoreLocation
 import Foundation
 
 class LocationDataProvider: NSObject, CLLocationManagerDelegate {
-  private let jsonEncoder: JSONEncoder
   private let locationManager: CLLocationManager
   
   private var handler: LocationDataHandler? = nil
   private var settings: LocationSettings? = nil
   
   override init() {
-    self.jsonEncoder = JSONEncoder()
     self.locationManager = CLLocationManager()
     super.init()
     self.locationManager.delegate = self
@@ -49,14 +47,10 @@ class LocationDataProvider: NSObject, CLLocationManagerDelegate {
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     if handler == nil { return }
-    
-    do {
-      let locationData = LocationData(from: locations.last!)
-      guard let locationJson = String(data: try jsonEncoder.encode(locationData), encoding: .utf8) else { return }
-      handler?.onLocationUpdate(locationJson: locationJson)
-    } catch {
-      NSLog("LocationData encoding error: \(error)")
-      handler?.onLocationError(errorCode: ErrorCodes.LOCATION_DATA_ENCODING_FAILED)
+
+    if let location = locations.last {
+      let locationData = LocationData(from: location)
+      handler?.onLocationUpdate(locationData: locationData)
     }
   }
   

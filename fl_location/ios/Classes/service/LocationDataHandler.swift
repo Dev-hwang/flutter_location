@@ -8,6 +8,6 @@
 import Foundation
 
 protocol LocationDataHandler {
-  func onLocationUpdate(locationJson: String)
+  func onLocationUpdate(locationData: LocationData)
   func onLocationError(errorCode: ErrorCodes)
 }

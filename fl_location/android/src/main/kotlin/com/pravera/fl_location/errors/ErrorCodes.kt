@@ -4,8 +4,7 @@ enum class ErrorCodes {
 	ACTIVITY_NOT_ATTACHED,
 	LOCATION_PERMISSION_REQUEST_CANCELLED,
 	LOCATION_SETTINGS_CHANGE_FAILED,
-	LOCATION_SERVICES_NOT_AVAILABLE,
-	LOCATION_DATA_ENCODING_FAILED;
+	LOCATION_SERVICES_NOT_AVAILABLE;
 
 	fun message(): String {
 		return when (this) {
@@ -17,8 +16,6 @@ enum class ErrorCodes {
 				"Failed to change location settings."
 			LOCATION_SERVICES_NOT_AVAILABLE ->
 				"Location services are not available."
-			LOCATION_DATA_ENCODING_FAILED ->
-				"Failed to encode location data in JSON format."
 		}
 	}
 }

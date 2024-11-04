@@ -44,8 +44,8 @@ class LocationStreamHandlerImpl: NSObject, FlutterStreamHandler, LocationDataHan
     return nil
   }
   
-  func onLocationUpdate(locationJson: String) {
-    locationEventSink?(locationJson)
+  func onLocationUpdate(locationData: LocationData) {
+    locationEventSink?(locationData.toJson())
   }
   
   func onLocationError(errorCode: ErrorCodes) {

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import com.pravera.fl_location.errors.ErrorCodes
+import com.pravera.fl_location.models.LocationData
 import com.pravera.fl_location.models.LocationSettings
 import io.flutter.plugin.common.PluginRegistry
 
@@ -25,10 +26,10 @@ class LocationDataProviderManager(private val context: Context): PluginRegistry.
 		providers[hashCode] = newLocationDataProvider
 
 		val newCallback = object : LocationDataCallback {
-			override fun onUpdate(locationJson: String) {
+			override fun onUpdate(locationData: LocationData) {
 				if (newLocationDataProvider.isRunningLocationUpdates) {
 					stopLocationUpdates(hashCode)
-					callback.onUpdate(locationJson)
+					callback.onUpdate(locationData)
 				}
 			}
 

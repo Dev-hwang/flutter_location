@@ -16,9 +16,9 @@ class LocationDataHandlerImplForManager: NSObject, LocationDataHandler {
     self.onComplete = onComplete
   }
   
-  func onLocationUpdate(locationJson: String) {
+  func onLocationUpdate(locationData: LocationData) {
     onComplete()
-    handler.onLocationUpdate(locationJson: locationJson)
+    handler.onLocationUpdate(locationData: locationData)
   }
   
   func onLocationError(errorCode: ErrorCodes) {

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:fl_location_platform_interface/fl_location_platform_interface.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,9 +28,9 @@ void main() {
           final Map settings = methodCall.arguments;
           final int accuracy = settings['accuracy'];
           if (accuracy == LocationAccuracy.best.index) {
-            return jsonEncode(dummyLocationA.toJson());
+            return dummyLocationA.toJson();
           } else {
-            return jsonEncode(dummyLocationB.toJson());
+            return dummyLocationB.toJson();
           }
         } else {
           return true;

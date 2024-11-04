@@ -11,7 +11,6 @@ enum ErrorCodes: String {
   case LOCATION_USAGE_DESCRIPTION_NOT_FOUND
   case LOCATION_PERMISSION_REQUEST_CANCELLED
   case LOCATION_UPDATE_FAILED
-  case LOCATION_DATA_ENCODING_FAILED
   
   func message() -> String {
     switch self {
@@ -21,8 +20,6 @@ enum ErrorCodes: String {
         return "The location permission request dialog was closed or the request was cancelled."
       case .LOCATION_UPDATE_FAILED:
         return "Unable to get location due to LocationManager error."
-      case .LOCATION_DATA_ENCODING_FAILED:
-        return "Failed to encode location data in JSON format."
     }
   }
 }

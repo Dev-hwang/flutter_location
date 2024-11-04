@@ -3,6 +3,7 @@ package com.pravera.fl_location
 import android.app.Activity
 import android.content.Context
 import com.pravera.fl_location.errors.ErrorCodes
+import com.pravera.fl_location.models.LocationData
 import com.pravera.fl_location.models.LocationPermission
 import com.pravera.fl_location.models.LocationServicesStatus
 import com.pravera.fl_location.models.LocationSettings
@@ -60,8 +61,8 @@ class MethodCallHandlerImpl(
 			}
 			"getLocation" -> {
 				val callback = object : LocationDataCallback {
-					override fun onUpdate(locationJson: String) {
-						result.success(locationJson)
+					override fun onUpdate(locationData: LocationData) {
+						result.success(locationData.toJson())
 					}
 
 					override fun onError(errorCode: ErrorCodes) {

@@ -14,8 +14,8 @@ class LocationDataHandlerImpl: NSObject, LocationDataHandler {
     self.result = result
   }
   
-  func onLocationUpdate(locationJson: String) {
-    result(locationJson)
+  func onLocationUpdate(locationData: LocationData) {
+    result(locationData.toJson())
   }
   
   func onLocationError(errorCode: ErrorCodes) {

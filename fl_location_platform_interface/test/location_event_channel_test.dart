@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:fl_location_platform_interface/fl_location_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -37,8 +35,8 @@ void main() {
             return;
           }
 
-          final String locationJsonString = jsonEncode(dummyLocation.toJson());
-          events.success(locationJsonString);
+          final Map<String, dynamic> locationJson = dummyLocation.toJson();
+          events.success(locationJson);
         },
         onCancel: (Object? arguments) {
           // not use

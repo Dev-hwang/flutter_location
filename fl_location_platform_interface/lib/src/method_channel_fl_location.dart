@@ -46,13 +46,13 @@ class MethodChannelFlLocation extends FlLocationPlatform {
       'accuracy': accuracy.index,
     };
 
-    final String locationJson = (timeLimit == null)
+    final dynamic locationJson = (timeLimit == null)
         ? await methodChannel.invokeMethod('getLocation', settings)
         : await methodChannel
             .invokeMethod('getLocation', settings)
             .timeout(timeLimit);
 
-    return Location.fromJson(jsonDecode(locationJson));
+    return Location.fromJson(_cast(locationJson));
   }
 
   @override
@@ -69,7 +69,7 @@ class MethodChannelFlLocation extends FlLocationPlatform {
 
     return _locationStream ??= locationEventChannel
         .receiveBroadcastStream(settings)
-        .map((event) => Location.fromJson(jsonDecode(event)));
+        .map((event) => Location.fromJson(_cast(event)));
   }
 
   @override
@@ -77,5 +77,12 @@ class MethodChannelFlLocation extends FlLocationPlatform {
     return _locationServicesStatusStream ??= locationServicesStatusEventChannel
         .receiveBroadcastStream()
         .map((event) => LocationServicesStatus.fromIndex(event));
+  }
+
+  Map<String, dynamic> _cast(dynamic result) {
+    final Map<String, dynamic> castedResult =
+        (result as Map<Object?, Object?>).cast<String, dynamic>();
+
+    return Map<String, dynamic>.of(castedResult);
   }
 }

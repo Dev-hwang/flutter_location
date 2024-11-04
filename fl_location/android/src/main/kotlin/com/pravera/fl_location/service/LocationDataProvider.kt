@@ -9,7 +9,6 @@ import android.util.Log
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import com.google.gson.Gson
 import com.pravera.fl_location.errors.ErrorCodes
 import com.pravera.fl_location.models.LocationData
 import com.pravera.fl_location.models.LocationSettings
@@ -22,7 +21,6 @@ class LocationDataProvider(private val context: Context) {
 		private const val REQUEST_CHECK_SETTINGS = 0x1
 	}
 
-	private val jsonEncoder = Gson()
 	private val locationProvider = LocationServices.getFusedLocationProviderClient(context)
 
 	private var activity: Activity? = null
@@ -161,12 +159,7 @@ class LocationDataProvider(private val context: Context) {
 					isMock = isMock
 				)
 
-				try {
-					callback.onUpdate(jsonEncoder.toJson(locationData))
-				} catch (ex: Exception) {
-					Log.e(TAG, "LocationData encoding error: $ex")
-					callback.onError(ErrorCodes.LOCATION_DATA_ENCODING_FAILED)
-				}
+				callback.onUpdate(locationData)
 			}
 		}
 	}

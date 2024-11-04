@@ -8,7 +8,7 @@
 import CoreLocation
 import Foundation
 
-struct LocationData: Codable {
+struct LocationData {
   let latitude: Double
   let longitude: Double
   let accuracy: Double
@@ -35,5 +35,20 @@ struct LocationData: Codable {
     
     self.millisecondsSinceEpoch = location.timestamp.timeIntervalSince1970 * 1000.0
     self.isMock = false
+  }
+  
+  func toJson() -> Dictionary<String, Any?> {
+    var json = Dictionary<String, Any?>()
+    json["latitude"] = latitude
+    json["longitude"] = longitude
+    json["accuracy"] = accuracy
+    json["altitude"] = altitude
+    json["heading"] = heading
+    json["speed"] = speed
+    json["speedAccuracy"] = speedAccuracy
+    json["millisecondsSinceEpoch"] = millisecondsSinceEpoch
+    json["isMock"] = isMock
+    
+    return json
   }
 }

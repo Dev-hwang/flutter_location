@@ -6,7 +6,7 @@ const Map<String, dynamic> dummyLocationJsonA = {
   'heading': 3.0,
   'speed': 10.0,
   'speedAccuracy': 100.0,
-  'millisecondsSinceEpoch': 1724918047344,
+  'millisecondsSinceEpoch': 1724918047344.0,
   'isMock': true,
 };
 
@@ -18,6 +18,6 @@ const Map<String, dynamic> dummyLocationJsonB = {
   'heading': 11.0,
   'speed': 10.0,
   'speedAccuracy': 120.0,
-  'millisecondsSinceEpoch': 1624918047344,
+  'millisecondsSinceEpoch': 1624918047344.0,
   'isMock': false,
 };
