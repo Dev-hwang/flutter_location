@@ -1,3 +1,7 @@
+## 4.2.0
+
+* [**CHORE**] Upgrade dependencies
+
 ## 4.1.0
 
 * [**CHORE**] Upgrade dependencies
