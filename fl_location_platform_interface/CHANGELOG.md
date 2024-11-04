@@ -1,3 +1,7 @@
+## 5.1.0
+
+* [**FIX**] Fix an issue where an error occurs when parsing the location JSON in release mode
+
 ## 5.0.0
 
 * [**BREAKING**] Change platform channel name
