@@ -26,6 +26,15 @@ class LocationPermissionManager: NSObject, CLLocationManagerDelegate {
   }
   
   func requestLocationPermission(handler: LocationPermissionHandler) {
+    //Verify current permission
+    let status = CLLocationManager.authorizationStatus()
+
+    if status != .notDetermined {
+        let result = LocationPermission.fromAuthorizationStatus(status: status)
+        handler.onPermissionResult(locationPermission: result)
+        return
+    }
+
     // The app has already requested location permission and is waiting for the result.
     if self.handler != nil {
       handler.onPermissionError(errorCode: ErrorCodes.LOCATION_PERMISSION_REQUEST_CANCELLED)
