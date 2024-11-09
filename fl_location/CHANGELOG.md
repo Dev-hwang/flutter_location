@@ -1,3 +1,7 @@
+## 4.4.2
+
+* [**FIX**] Fix an issue related to `requestLocationPermission` on iOS [#23](https://github.com/Dev-hwang/flutter_location/issues/23)
+
 ## 4.4.1
 
 * [**FIX**] Fix an issue where an error occurs when parsing the location JSON in release mode
