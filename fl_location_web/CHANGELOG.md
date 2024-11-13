@@ -1,3 +1,8 @@
+## 5.0.0
+
+* [**CHORE**] Bump minimum supported SDK version to `Flutter 3.22.0` / `Dart 3.4.0`
+* [**FEAT**] Support `WebAssembly(WASM)` builds
+
 ## 4.2.0
 
 * [**CHORE**] Upgrade dependencies

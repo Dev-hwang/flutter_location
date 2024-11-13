@@ -132,16 +132,18 @@ class FlLocationWeb extends FlLocationPlatform {
 
   @visibleForTesting
   Location toLocation(web.GeolocationPosition position) {
-    return Location.fromJson({
-      'latitude': position.coords.latitude,
-      'longitude': position.coords.longitude,
-      'accuracy': position.coords.accuracy,
-      'altitude': position.coords.altitude,
-      'heading': position.coords.heading,
-      'speed': position.coords.speed,
-      'millisecondsSinceEpoch': position.timestamp,
-      'isMock': false,
-    });
+    return Location(
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+      accuracy: position.coords.accuracy,
+      altitude: position.coords.altitude ?? 0.0,
+      heading: position.coords.heading ?? 0.0,
+      speed: position.coords.speed ?? 0.0,
+      speedAccuracy: 0.0,
+      millisecondsSinceEpoch: position.timestamp.toDouble(),
+      timestamp: DateTime.fromMillisecondsSinceEpoch(position.timestamp),
+      isMock: false,
+    );
   }
 
   @visibleForTesting
