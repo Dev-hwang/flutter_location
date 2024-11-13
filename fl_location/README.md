@@ -90,12 +90,20 @@ Future<bool> _requestLocationPermission({bool background = false}) async {
     return false;
   }
 
-  // Location permission must always be granted (LocationPermission.always)
-  // to collect location data in the background.
+  // Web: Only allow whileInUse permission.
+  if (kIsWeb || kIsWasm) {
+    return true;
+  }
+
+  // Android: You must request location permission one more time to access background location.
+  // iOS 12-: You can request always permission through the above request.
+  // iOS 13+: You can only request whileInUse permission. When the app enters the background,
+  // a prompt will appear asking for always permission.
   if (Platform.isAndroid &&
       background &&
       permission == LocationPermission.whileInUse) {
     // You need a clear explanation of why your app's feature needs access to background location.
+    // https://developer.android.com/develop/sensors-and-location/location/permissions#request-background-location
 
     // Android: ACCESS_BACKGROUND_LOCATION
     permission = await FlLocation.requestLocationPermission();
