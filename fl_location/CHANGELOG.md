@@ -1,3 +1,9 @@
+## 5.0.0
+
+* [**CHORE**] Upgrade web dependencies
+  - Bump minimum supported SDK version to `Flutter 3.22.0` / `Dart 3.4.0`
+  - Support `WebAssembly(WASM)` builds
+
 ## 4.4.2
 
 * [**FIX**] Fix an issue related to `requestLocationPermission` on iOS [#23](https://github.com/Dev-hwang/flutter_location/issues/23)
