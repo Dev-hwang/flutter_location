@@ -49,8 +49,8 @@ class _ExampleAppState extends State<ExampleApp> {
 
     // Android: You must request location permission one more time to access background location.
     // iOS 12-: You can request always permission through the above request.
-    // iOS 13+: You can only request whileInUse permission. When the app enters the background,
-    // a prompt will appear asking for always permission.
+    // iOS 13+: You can only request whileInUse permission through the above request.
+    // When the app enters the background, a prompt will appear asking for always permission.
     if (Platform.isAndroid &&
         background &&
         permission == LocationPermission.whileInUse) {
@@ -138,7 +138,7 @@ class _ExampleAppState extends State<ExampleApp> {
         ValueListenableBuilder(
           valueListenable: _getLocationButtonState,
           builder: (context, state, _) {
-            return _buildTestButton(
+            return _buildButton(
               text: 'GET Location',
               state: state,
               onPressed: _getLocation,
@@ -162,7 +162,7 @@ class _ExampleAppState extends State<ExampleApp> {
                   onPressed = _subscribeLocationStream;
                 }
 
-                return _buildTestButton(
+                return _buildButton(
                   text: text,
                   state: state,
                   onPressed: onPressed,
@@ -191,7 +191,7 @@ class _ExampleAppState extends State<ExampleApp> {
     );
   }
 
-  Widget _buildTestButton({
+  Widget _buildButton({
     required String text,
     required ButtonState state,
     VoidCallback? onPressed,
